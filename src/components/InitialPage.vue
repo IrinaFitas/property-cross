@@ -10,6 +10,8 @@
         <app-search-field></app-search-field>
         <app-go-button></app-go-button>
         <app-my-location-button></app-my-location-button>
+
+        <p>Recent searches:</p>
     </div>
 </template>
 
