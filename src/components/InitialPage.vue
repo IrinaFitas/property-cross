@@ -1,7 +1,9 @@
 <template>
     <div id="container">
-        <h1>PropertyCross</h1>
-        <app-favourite-button></app-favourite-button>
+        <div class="top-bar">
+            <h1>PropertyCross</h1>
+            <app-favourite-button></app-favourite-button>
+        </div>
         <p class="instruction-text">
             Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
         </p>
@@ -25,4 +27,21 @@ export default {
     }
 }
 </script>
+
+<style>
+    #container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .top-bar {
+        display: flex;
+    }
+
+    h1 {
+        margin-left: auto;
+    }
+</style>
+
+
 
