@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-	  <h1>This is Vue!</h1>
+	  <app-initial-page></app-initial-page>
   </div>
 </template>
 
 <script>
-
+import InitialPage from "./components/InitialPage.vue";
 export default {
 	components: {
+		appInitialPage: InitialPage
 	}
 }
 </script>
