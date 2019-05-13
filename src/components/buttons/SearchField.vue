@@ -1,3 +1,3 @@
 <template>
-    <input type="search" placeholder="newcastle">
+    <input class="btn" type="search" placeholder="newcastle">
 </template>

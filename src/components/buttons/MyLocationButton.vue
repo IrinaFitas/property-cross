@@ -1,3 +1,3 @@
 <template>
-    <button type="button">My Location</button>
+    <button class="btn" type="button">My Location</button>
 </template>
