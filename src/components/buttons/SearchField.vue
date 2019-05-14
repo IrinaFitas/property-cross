@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import axios from "axios-jsonp-pro";
+
 export default {
     computed: {
         value() {
@@ -21,9 +23,11 @@ export default {
             this.$store.dispatch("updateInputValue", event.target.value)
         },
         showTheHouses() {
-            this.$http.get("http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=albury")
-                .then( response => response.json())
-                .then(data => console.log(data));
+            axios.jsonp("http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds")
+                .then( response => {
+                    console.log(response);
+                })
+                .catch(error => console.log(error));
         }
     }
 }
