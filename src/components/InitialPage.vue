@@ -11,8 +11,10 @@
         <app-go-button></app-go-button>
         <app-my-location-button></app-my-location-button>
 
-        <!-- <p>Recent searches:</p> -->
-        <!-- <router-view></router-view> -->
+        <p>Recent searches:</p>
+        <div>
+            <p v-for="(item, index) in searchList" :key="index">Search #{{ index }} ({{ item.length }})</p>
+        </div>
     </div>
 </template>
 
@@ -22,6 +24,8 @@ import FavouriteButton from "./buttons/FavouriteButton.vue";
 import MyLocationButton from "./buttons/MyLocationButton.vue";
 import SearchField from "./buttons/SearchField.vue";
 import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
     components: {
         appGoButton: GoButton,
@@ -34,9 +38,7 @@ export default {
             "searchList"
         ])
     },
-    mounted() {
-        console.log(this.searchList);
-    }
+    methods: {}
 }
 </script>
 

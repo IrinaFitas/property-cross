@@ -4,7 +4,6 @@
             type="search" placeholder="newcastle"
             v-model="input"
             @keyup.enter="updateValue">
-        <p>{{ searchList }}</p>
     </div>
 </template>
 

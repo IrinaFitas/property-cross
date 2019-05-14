@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
             state.inputValue = payload;
         },
         updateSearchList: (state, payload) => {
-            state.searchList.unshift(payload);
+            state.searchList.push(payload);
         }
     },
     actions: {
@@ -37,7 +37,11 @@ export const store = new Vuex.Store({
         updateSearchList: ( {commit}, payload) => {
             axios.jsonp(`http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=${payload}`)
                 .then( response => {
-                    commit("updateSearchList", response.response.listings);
+                    if (response.response.listings.length) {
+                        commit("updateSearchList", response.response.listings);
+                    } else {
+                        console.log("No home");
+                    }
                 })
                 .catch(error => console.log(error));
         }
