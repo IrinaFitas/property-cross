@@ -2,14 +2,19 @@
     <div id="container">
         <div class="top-bar">
             <h1>PropertyCross</h1>
-            <app-favourite-button></app-favourite-button>
+            <button class="btn faves-btn" type="button">Faves</button>
         </div>
         <p class="instruction-text">
             Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
         </p>
-        <app-search-field></app-search-field>
-        <app-go-button></app-go-button>
-        <app-my-location-button></app-my-location-button>
+        <div>
+            <input class="btn search-field" 
+            type="search" placeholder="newcastle"
+            v-model="input"
+            @keyup.enter="updateValue">
+        </div>
+        <button class="btn" type="button">Go</button>
+        <button class="btn" type="button" @click="updateWithGeo">My Location</button>
 
         <p>Recent searches:</p>
         <div>
@@ -19,23 +24,13 @@
 </template>
 
 <script>
-import GoButton from "./buttons/GoButton.vue";
-import FavouriteButton from "./buttons/FavouriteButton.vue";
-import MyLocationButton from "./buttons/MyLocationButton.vue";
-import SearchField from "./buttons/SearchField.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 
 export default {
-    components: {
-        appGoButton: GoButton,
-        appFavouriteButton: FavouriteButton,
-        appMyLocationButton: MyLocationButton,
-        appSearchField: SearchField
-    },
-    data() {
+    data () {
         return {
-            state: "initial"
+            input: ""
         }
     },
     computed: {
@@ -43,7 +38,15 @@ export default {
             "searchList"
         ])
     },
-    methods: {}
+    methods: {
+        ...mapActions([
+            "updateWithGeo",
+            "updateSearchList"
+        ]),
+        updateValue() {
+            this.updateSearchList(this.input);
+        }
+    }
 }
 </script>
 
@@ -59,6 +62,31 @@ export default {
 
     h1 {
         margin-left: auto;
+    }
+    .btn {
+        padding: 10px 15px;
+        margin: 5px;
+        border: 2px solid #2c3e50;
+        background-color: transparent;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #2c3e50;
+        font-weight: bold;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .faves-btn {
+        margin-left: auto;
+        flex-shrink: 0;
+        align-self: center;
+        width: 150px;
+        height: 40px;
+        padding: 0;
+    }
+
+    .search-field {
+        width: 300px;
     }
 </style>
 
