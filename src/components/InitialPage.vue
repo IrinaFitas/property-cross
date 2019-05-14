@@ -33,6 +33,11 @@ export default {
         appMyLocationButton: MyLocationButton,
         appSearchField: SearchField
     },
+    data() {
+        return {
+            state: "initial"
+        }
+    },
     computed: {
         ...mapGetters([
             "searchList"

@@ -44,6 +44,17 @@ export const store = new Vuex.Store({
                     }
                 })
                 .catch(error => console.log(error));
+        },
+        updateWithGeo: ( {commit}, payload) => {
+            axios.jsonp('http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&centre_point=51.684183,-3.431481')
+                .then( response => {
+                    if (response.response.listings.length) {
+                        commit("updateSearchList", response.response.listings);
+                    } else {
+                        console.log("No home");
+                    }
+                })
+                .catch(error => console.log(error));
         }
     }
 });
