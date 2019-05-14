@@ -20,12 +20,21 @@ import GoButton from "./buttons/GoButton.vue";
 import FavouriteButton from "./buttons/FavouriteButton.vue";
 import MyLocationButton from "./buttons/MyLocationButton.vue";
 import SearchField from "./buttons/SearchField.vue";
+import { mapGetters } from "vuex";
 export default {
     components: {
         appGoButton: GoButton,
         appFavouriteButton: FavouriteButton,
         appMyLocationButton: MyLocationButton,
         appSearchField: SearchField
+    },
+    computed: {
+        ...mapGetters([
+            "searchList"
+        ])
+    },
+    mounted() {
+        console.log(this.searchList);
     }
 }
 </script>
