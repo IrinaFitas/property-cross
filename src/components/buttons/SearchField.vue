@@ -1,10 +1,10 @@
 <template>
     <div>
         <input class="btn search-field" 
-            type="search" placeholder="newcastle" 
+            type="search" placeholder="newcastle"
             v-model="input"
             @keyup.enter="updateValue">
-        <!-- <p>{{ inputValue }}</p> -->
+        <p>{{ searchList }}</p>
     </div>
 </template>
 
@@ -18,11 +18,12 @@ export default {
             input: ""
         }
     },
-    // computed: {
-    //     ...mapGetters([
-    //         "inputValue"
-    //     ])
-    // },
+    computed: {
+        ...mapGetters([
+            "inputValue",
+            "searchList"
+        ])
+    },
     methods: {
         ...mapActions([
             "updateSearchList"

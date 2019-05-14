@@ -11,7 +11,8 @@
         <app-go-button></app-go-button>
         <app-my-location-button></app-my-location-button>
 
-        <p>Recent searches:</p>
+        <!-- <p>Recent searches:</p> -->
+        <!-- <router-view></router-view> -->
     </div>
 </template>
 
