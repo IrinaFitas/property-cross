@@ -24,7 +24,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style>
     .box {
         width: 50%;
         margin: 0 auto;

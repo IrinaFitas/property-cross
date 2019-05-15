@@ -10,7 +10,8 @@ export const store = new Vuex.Store({
     state: {
         inputValue: "",
         searchList: [],
-        errorText: ""
+        errorText: "",
+        locations: []
     },
     getters: {
         inputValue: state => {
@@ -21,6 +22,9 @@ export const store = new Vuex.Store({
         },
         errorText: state => {
             return state.errorText;
+        },
+        locations: state => {
+            return state.locations;
         }
     },
     mutations: {
@@ -32,6 +36,9 @@ export const store = new Vuex.Store({
         },
         updateErrorText: (state, payload) => {
             state.errorText = payload;
+        },
+        updateLocations: (state, payload) => {
+            state.locations.push(payload);
         }
     },
     actions: {
@@ -46,16 +53,20 @@ export const store = new Vuex.Store({
         updateSearchList: ( {commit}, payload) => {
             axios.jsonp(`${BASE_URL}place_name=${payload}`)
                 .then( res => {
+                    if (res.response.locations.length > 1) {
+                        commit("updateLocations", [...res.response.locations])
+                        vm.$router("/locations");
+                    }
                     if (res.response.listings.length) {
                         commit("updateSearchList", res.response.listings);
                         console.log(res);
                         vm.$router.push("/result");
                     } else {
                         console.log(res);
-                        if (res.response.application_response_text === "unknown location") {
+                        if (res.response.application_response_code === "200") {
                             commit("updateErrorText", "The location given was not recognised.");
+                            vm.$router.push("/error");
                         } 
-                        vm.$router.push("/error");
                     }
                 })
                 .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
@@ -67,10 +78,10 @@ export const store = new Vuex.Store({
                         commit("updateSearchList", response.response.listings);
                         vm.$router.push("/result");
                     } else {
-                        if (res.response.application_response_text === "unknown location") {
+                        if (res.response.application_response_code === "200") {
                             commit("updateErrorText", "The location given was not recognised.");
+                            vm.$router.push("/error");
                         }
-                        vm.$router.push("/error");
                     }
                 })
                 .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
