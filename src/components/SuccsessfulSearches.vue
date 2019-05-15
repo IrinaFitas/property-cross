@@ -1,7 +1,7 @@
 <template>
     <div>
     <p>Recent searches:</p>
-        <div>
+        <div class="box">
             <p v-for="(item, index) in searchList" :key="index">Search #{{ index }} ({{ item.length }})</p>
         </div>
     </div>
@@ -24,4 +24,12 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .box {
+        width: 50%;
+        margin: 0 auto;
+        border: 2px solid #2c3e50;
+    }
+</style>
+
 

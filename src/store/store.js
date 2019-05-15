@@ -54,8 +54,10 @@ export const store = new Vuex.Store({
                 .then( response => {
                     if (response.response.listings.length) {
                         commit("updateSearchList", response.response.listings);
+                        vm.$router.push("/result");
                     } else {
                         console.log("No home");
+                        vm.$router.push("/error");
                     }
                 })
                 .catch(error => console.log(error));

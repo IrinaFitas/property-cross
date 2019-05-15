@@ -8,4 +8,5 @@ export const routes = [
         { path: "/error", component: ErrorSearch},
         { path: "/list", component: ErrorSearch}
     ]},
+    { path: "*", redirect: "/"}
 ];
