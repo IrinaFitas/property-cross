@@ -2,13 +2,15 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios-jsonp-pro";
 import { BASE_URL } from "./../utils/constants.js";
+import { pick } from "./../utils/functions.js";
 import { vm } from "./../main.js";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
         inputValue: "",
-        searchList: []
+        searchList: [],
+        errorText: ""
     },
     getters: {
         inputValue: state => {
@@ -16,6 +18,9 @@ export const store = new Vuex.Store({
         },
         searchList: state => {
             return state.searchList;
+        },
+        errorText: state => {
+            return state.errorText;
         }
     },
     mutations: {
@@ -24,6 +29,9 @@ export const store = new Vuex.Store({
         },
         updateSearchList: (state, payload) => {
             state.searchList.push(payload);
+        },
+        updateErrorText: (state, payload) => {
+            state.errorText = payload;
         }
     },
     actions: {
@@ -37,20 +45,20 @@ export const store = new Vuex.Store({
         // }
         updateSearchList: ( {commit}, payload) => {
             axios.jsonp(`${BASE_URL}place_name=${payload}`)
-                .then( response => {
-                    if (response.response.listings.length) {
-                        commit("updateSearchList", response.response.listings);
-                        console.log(response);
+                .then( res => {
+                    if (res.response.listings.length) {
+                        commit("updateSearchList", res.response.listings);
+                        console.log(res);
                         vm.$router.push("/result");
                     } else {
-                        console.log(response);
-                        if (response.response.application_response_text === "unknown location") {
-                            console.log("The location given was not recognised");
-                        }
+                        console.log(res);
+                        if (res.response.application_response_text === "unknown location") {
+                            commit("updateErrorText", "The location given was not recognised.");
+                        } 
                         vm.$router.push("/error");
                     }
                 })
-                .catch(error => console.log(error));
+                .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
         },
         updateWithGeo: ( {commit}, payload) => {
             axios.jsonp(`${BASE_URL}centre_point=51.684183,-3.431481`)
@@ -59,11 +67,13 @@ export const store = new Vuex.Store({
                         commit("updateSearchList", response.response.listings);
                         vm.$router.push("/result");
                     } else {
-                        console.log("No home");
+                        if (res.response.application_response_text === "unknown location") {
+                            commit("updateErrorText", "The location given was not recognised.");
+                        }
                         vm.$router.push("/error");
                     }
                 })
-                .catch(error => console.log(error));
+                .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
         }
     }
 });
