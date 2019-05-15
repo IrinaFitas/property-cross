@@ -11,7 +11,7 @@ const router = new VueRouter({
 	mode: "history"
 });
 
-new Vue({
+export const vm = new Vue({
 	render: h => h(App),
 	store,
 	router

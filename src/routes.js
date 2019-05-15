@@ -4,7 +4,7 @@ import ErrorSearch from "./components/ErrorSearch.vue";
 
 export const routes = [
     { path: "", component: InitialPage, children: [
-        { path: "/some", component: SuccsessfulSearches},
+        { path: "/result", component: SuccsessfulSearches},
         { path: "/error", component: ErrorSearch},
         { path: "/list", component: ErrorSearch}
     ]},

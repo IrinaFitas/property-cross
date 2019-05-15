@@ -15,7 +15,7 @@
         </div>
         <button class="btn" type="button">Go</button>
         <button class="btn" type="button" @click="updateWithGeo">My Location</button>
-        
+
         <router-view></router-view>
     </div>
 </template>
