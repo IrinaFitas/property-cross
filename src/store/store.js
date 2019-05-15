@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios-jsonp-pro";
+// import router from "./../main.js";
+
 
 Vue.use(Vuex);
 
@@ -39,8 +41,10 @@ export const store = new Vuex.Store({
                 .then( response => {
                     if (response.response.listings.length) {
                         commit("updateSearchList", response.response.listings);
+                        this.$router.push("some");
                     } else {
                         console.log("No home");
+                        this.$router.push("error");
                     }
                 })
                 .catch(error => console.log(error));

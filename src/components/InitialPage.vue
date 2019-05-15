@@ -15,11 +15,8 @@
         </div>
         <button class="btn" type="button">Go</button>
         <button class="btn" type="button" @click="updateWithGeo">My Location</button>
-
-        <p>Recent searches:</p>
-        <div>
-            <p v-for="(item, index) in searchList" :key="index">Search #{{ index }} ({{ item.length }})</p>
-        </div>
+        
+        <router-view></router-view>
     </div>
 </template>
 
