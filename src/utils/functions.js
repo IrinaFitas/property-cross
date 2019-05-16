@@ -1,8 +1,10 @@
-// export function pick(props, obj) {
-
-//     return obj[...props];
-//     // if (obj[prop1]) {
-//     //   return obj[prop1][prop2];
-//     // }
-//     return;
-// }
+export const pick = function (obj, props) {
+    if (!obj || !props) return;
+    let picked = {};
+    
+	props.forEach(function(prop) {
+		picked[prop] = obj[prop];
+    });
+    
+	return picked;
+};

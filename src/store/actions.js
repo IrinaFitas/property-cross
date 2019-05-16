@@ -25,7 +25,10 @@ export const updateSearchList = ( {commit}, payload) => {
                     } 
                 }
             })
-            .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
+            .catch(error => {
+                commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
+                vm.$router.push("/error");
+            });
 };
 
 export const updateWithGeo = ( {commit}, payload) => {
@@ -41,7 +44,10 @@ export const updateWithGeo = ( {commit}, payload) => {
                 }
             }
         })
-        .catch(error => commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again"));
+        .catch(error => {
+            commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
+            vm.$router.push("/error");
+        });
 };
 
 
