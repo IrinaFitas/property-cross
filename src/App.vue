@@ -15,6 +15,9 @@ export default {
 
 <style>
 #app {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
 	font-family: Courier, sans-serif, monospace;
 	font-size: 16px;
 	-webkit-font-smoothing: antialiased;

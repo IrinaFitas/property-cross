@@ -1,6 +1,11 @@
 <template>
     <div class="box">
-        <p v-for="(item, index) in locations" :key="index">Location #{{ index + 1 }} ({{ item.length }})</p>
+        <p 
+            v-for="(item, index) in locations" 
+            :key="index"
+            @click="some">
+            Location #{{ index + 1 }} ({{ item.length }})
+        </p>
     </div>
 </template>
 
@@ -15,5 +20,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>
+
 
 

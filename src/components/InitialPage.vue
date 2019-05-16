@@ -13,7 +13,7 @@
                 v-model="input"
                 @keyup.enter="updateValue">
         </div>
-        <button class="btn" type="button">Go</button>
+        <button class="btn" type="button" @click="updateValue">Go</button>
         <button class="btn" type="button" @click="updateWithGeo">My Location</button>
 
         <router-view></router-view>

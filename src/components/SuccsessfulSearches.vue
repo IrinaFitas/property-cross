@@ -2,7 +2,7 @@
     <div>
     <p>Recent searches:</p>
         <div class="box">
-            <p v-for="(item, index) in searchList" :key="index">Search #{{ index + 1 }} ({{ item.length }})</p>
+            <p v-for="(item, index) in searchList" :key="index" @click="some">Search #{{ index + 1 }} ({{ item.length }})</p>
         </div>
     </div>
 </template>
@@ -20,7 +20,10 @@ export default {
     methods: {
         ...mapActions([
             "updateSearchList"
-        ])
+        ]),   
+        some() {
+            this.$router.push("/list");
+        }  
     }
 }
 </script>
