@@ -2,5 +2,6 @@ export const state = {
     inputValue: "",
     searchList: [],
     errorText: "",
-    locations: []
+    locations: [],
+    listOfResult: []
 };

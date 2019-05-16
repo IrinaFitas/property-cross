@@ -50,6 +50,13 @@
     </div>
 </template>
 
+<script>
+export default {
+
+}
+</script>
+
+
 <style scoped>
 .container {
 }
@@ -62,7 +69,7 @@ ul {
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #2c3e50;
     margin: 5px;
 }
 .picture {

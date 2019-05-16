@@ -13,3 +13,7 @@ export const errorText = state => {
 export const locations = state => {
     return state.locations;
 };
+
+export const listOfResult = state => {
+    return state.listOfResult;
+};

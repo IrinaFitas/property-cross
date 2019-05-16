@@ -13,3 +13,7 @@ export const updateErrorText = (state, payload) => {
 export const updateLocations = (state, payload) => {
     state.locations.push(payload);
 };
+
+export const updateListOfResult = (state, payload) => {
+    state.listOfResult.push(payload);
+};
