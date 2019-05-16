@@ -9,9 +9,9 @@
         </p>
         <div>
             <input class="btn search-field" 
-            type="search" placeholder="newcastle"
-            v-model="input"
-            @keyup.enter="updateValue">
+                type="search" placeholder="newcastle"
+                v-model="input"
+                @keyup.enter="updateValue">
         </div>
         <button class="btn" type="button">Go</button>
         <button class="btn" type="button" @click="updateWithGeo">My Location</button>
