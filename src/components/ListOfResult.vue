@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <ul>
-            <li v-for="(item, index) in listOfResult" :key="index">
+            <li v-for="(item, index) in listOfResult" :key="index" @click="updateCurrentProperty(item)">
                 <div class="box">
                     <img :src="item.thumb_url" alt="">
                     <p>{{ item.price_formatted }}</p>
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     computed: {
         ...mapGetters(["listOfResult"])
     },
-    mounted() {
-        console.log(this.listOfResult);
+    methods: {
+        ...mapActions(["updateCurrentProperty"])
     }
 }
 </script>

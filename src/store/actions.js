@@ -61,7 +61,12 @@ export const updateWithGeo = ( {commit}, payload) => {
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
     vm.$router.push("/list");
-}
+};
+
+export const updateCurrentProperty = ( {commit}, payload) => {
+    commit("updateCurrentProperty", payload);
+    vm.$router.push("/current");
+};
 
 
 

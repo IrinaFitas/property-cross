@@ -17,3 +17,7 @@ export const updateLocations = (state, payload) => {
 export const updateListOfResult = (state, payload) => {
     state.listOfResult = payload;
 };
+
+export const updateCurrentProperty = (state, payload) => {
+    state.currentProperty = payload;
+};

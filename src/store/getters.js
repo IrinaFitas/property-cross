@@ -17,3 +17,7 @@ export const locations = state => {
 export const listOfResult = state => {
     return state.listOfResult;
 };
+
+export const currentProperty = state => {
+    return state.currentProperty;
+};

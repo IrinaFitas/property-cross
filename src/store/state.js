@@ -3,5 +3,6 @@ export const state = {
     searchList: [],
     errorText: "",
     locations: [],
-    listOfResult: []
+    listOfResult: [],
+    currentProperty: ""
 };
