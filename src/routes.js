@@ -9,11 +9,11 @@ import Favourites from "./components/Favourites.vue";
 export const routes = [
     { path: "", component: InitialPage, children: [
         { path: "/result", component: SuccsessfulSearches},
-        { path: "/error", component: ErrorSearch},
-        { path: "/list", component: ListOfResult},
-        { path: "/locations", component: ListOfLocation},
-        { path: "/current", component: CurrentProperty},
-        { path: "/favourites", component: Favourites}
+        { path: "/error", component: ErrorSearch}
     ]},
+    { path: "/list", component: ListOfResult},
+    { path: "/locations", component: ListOfLocation},
+    { path: "/current", component: CurrentProperty},
+    { path: "/favourites", component: Favourites},
     { path: "*", redirect: "/"}
 ];

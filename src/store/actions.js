@@ -24,10 +24,10 @@ export const updateFavouritesList = ( {commit}, payload) => {
 
 export const updateSearchList = async ( {commit}, payload) => {
     try {
-        let res = await axios.jsonp(`${BASE_URL}place_name=${payload}`, { timeout: 5000});
-        let listings = pick(["response", "listings"], res);
-        let locations = pick(["response", "locations"], res);
-        let code = pick(["response", "application_response_code"], res);     
+        const res = await axios.jsonp(`${BASE_URL}place_name=${payload}`, { timeout: 5000});
+        const listings = pick(["response", "listings"], res);
+        const locations = pick(["response", "locations"], res);
+        const code = pick(["response", "application_response_code"], res);     
                          
         if (locations.length > 1) {
             commit("updateLocations", locations);
@@ -37,12 +37,11 @@ export const updateSearchList = async ( {commit}, payload) => {
             commit("updateSearchList", listings);
             console.log(res);
             vm.$router.push("/result");
-        } else {
-            if (code === "200") {
-                commit("updateErrorText", "The location given was not recognised.");
-                vm.$router.push("/error");
-            } 
-        }
+        } 
+        if (code === "200") {
+            commit("updateErrorText", "The location given was not recognised.");
+            vm.$router.push("/error");
+        } 
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
         vm.$router.push("/error");
@@ -51,18 +50,17 @@ export const updateSearchList = async ( {commit}, payload) => {
 
 export const updateWithGeo = async ( {commit}, payload) => {
     try {
-        let res = await axios.jsonp(`${BASE_URL}centre_point=51.684183,-3.431481`, { timeout: 5000});
-        let listings = pick(["response", "listings"], res);
-        let code = pick(["response", "application_response_code"], res);
+        const res = await axios.jsonp(`${BASE_URL}centre_point=51.684183,-3.431481`, { timeout: 5000});
+        const listings = pick(["response", "listings"], res);
+        const code = pick(["response", "application_response_code"], res);
 
         if (listings.length) {
             commit("updateSearchList", listings);
             vm.$router.push("/result");
-        } else {
-            if (code === "200") {
-                commit("updateErrorText", "The location given was not recognised.");
-                vm.$router.push("/error");
-            }
+        }
+        if (code === "200") {
+            commit("updateErrorText", "The location given was not recognised.");
+            vm.$router.push("/error");
         }
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
