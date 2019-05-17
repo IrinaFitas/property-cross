@@ -2,7 +2,7 @@
     <div id="container">
         <div class="top-bar">
             <h1>PropertyCross</h1>
-            <button class="btn faves-btn" type="button">Faves</button>
+            <button class="btn faves-btn" type="button" @click="showFavourite">Faves</button>
         </div>
         <p class="instruction-text">
             Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
@@ -42,12 +42,15 @@ export default {
         ]),
         updateValue() {
             this.updateSearchList(this.input);
+        },
+        showFavourite() {
+            this.$router.push("/favourites");
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
     #container {
         width: 90%;
         margin: 0 auto;

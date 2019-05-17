@@ -1,5 +1,6 @@
 <template>
     <div class="box">
+        <p>Locations</p>
         <p 
             v-for="(item, index) in locations" 
             :key="index"
