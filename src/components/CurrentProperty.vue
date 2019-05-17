@@ -2,7 +2,7 @@
     <div id="container">
         <div class="top-bar">
             <h3>Property Details</h3>
-            <button type="btn" class="add-btn" @click="show">+</button>
+            <button type="btn" class="add-btn" @click="updateFavouritesList(currentProperty)">+</button>
         </div>
         <div class="content">
             <p>{{ currentProperty.price_formatted }}</p>
@@ -15,15 +15,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
     computed: {
         ...mapGetters(["currentProperty"])
     },
     methods: {
-        show(event) {
-            console.log(event);
-        }
+        ...mapActions(["updateFavouritesList"])
     }
 }
 </script>
