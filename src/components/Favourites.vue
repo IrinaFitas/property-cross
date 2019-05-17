@@ -25,8 +25,6 @@ export default {
 
 
 <style scoped>
-.container {
-}
 ul {
     list-style: none;
     margin: 0;
