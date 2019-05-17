@@ -1,49 +1,11 @@
 <template>
     <div class="container">
         <ul>
-            <li>
+            <li v-for="(item, index) in listOfResult" :key="index">
                 <div class="box">
-                    <img class="picture" src="https://imgs.nestimg.com/medium/4_bedroom_semi_detached_house_for_sale_111519984124783158.jpg" alt="">
-                    <div>
-                        <p>price</p>
-                        <p>Somewhere, nowhere</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <img class="picture" src="" alt="">
-                    <div>
-                        <p>price</p>
-                        <p>Somewhere, nowhere</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <img class="picture" src="" alt="">
-                    <div>
-                        <p>price</p>
-                        <p>Somewhere, nowhere</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <img class="picture" src="" alt="">
-                    <div>
-                        <p>price</p>
-                        <p>Somewhere, nowhere</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="box">
-                    <img class="picture" src="" alt="">
-                    <div>
-                        <p>price</p>
-                        <p>Somewhere, nowhere</p>
-                    </div>
+                    <img :src="item.thumb_url" alt="">
+                    <p>{{ item.price_formatted }}</p>
+                    <p>{{ item.title }}</p>
                 </div>
             </li>
         </ul>
@@ -51,8 +13,15 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from "vuex";
 
+export default {
+    computed: {
+        ...mapGetters(["listOfResult"])
+    },
+    mounted() {
+        console.log(this.listOfResult);
+    }
 }
 </script>
 

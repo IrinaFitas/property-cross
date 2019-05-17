@@ -8,8 +8,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     computed: {
@@ -22,10 +21,6 @@ export default {
             "updateSearchList",
             "updateListOfResult"
         ]) 
-        // paintList(item) {
-        //     console.log(item);
-        //     this.updateListOfResult(item);
-        // }  
     }
 }
 </script>
@@ -34,6 +29,11 @@ export default {
         width: 50%;
         margin: 0 auto;
         border: 2px solid #2c3e50;
+    }
+    .box p {
+        padding: 16px;
+        margin: 0;
+        cursor: pointer;
     }
 </style>
 

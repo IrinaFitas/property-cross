@@ -15,5 +15,5 @@ export const updateLocations = (state, payload) => {
 };
 
 export const updateListOfResult = (state, payload) => {
-    state.listOfResult.push(payload);
+    state.listOfResult = payload;
 };
