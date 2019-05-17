@@ -30,7 +30,7 @@ export const updateSearchList = async ( {commit}, payload) => {
         let code = pick(["response", "application_response_code"], res);     
                          
         if (locations.length > 1) {
-            commit("updateLocations", [...locations]);
+            commit("updateLocations", locations);
             vm.$router("/locations");
         }
         if (listings.length) {
