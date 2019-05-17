@@ -21,3 +21,7 @@ export const updateListOfResult = (state, payload) => {
 export const updateCurrentProperty = (state, payload) => {
     state.currentProperty = payload;
 };
+
+export const updateFavouritesList = (state, payload) => {
+    state.favouritesList.push(payload);
+};

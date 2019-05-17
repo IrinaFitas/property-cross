@@ -68,6 +68,10 @@ export const updateCurrentProperty = ( {commit}, payload) => {
     vm.$router.push("/current");
 };
 
+export const updateFavouritesList = ( {commit}, payload) => {
+    commit("updateFavouritesList", payload);
+    vm.$router.push("/favourites");
+};
 
 
 

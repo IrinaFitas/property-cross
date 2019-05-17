@@ -4,5 +4,6 @@ export const state = {
     errorText: "",
     locations: [],
     listOfResult: [],
-    currentProperty: ""
+    currentProperty: "",
+    favouritesList: []
 };

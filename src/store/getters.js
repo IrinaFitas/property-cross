@@ -21,3 +21,7 @@ export const listOfResult = state => {
 export const currentProperty = state => {
     return state.currentProperty;
 };
+
+export const favouritesList = state => {
+    return state.favouritesList;
+};

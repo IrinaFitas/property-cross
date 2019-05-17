@@ -4,6 +4,7 @@ import ErrorSearch from "./components/ErrorSearch.vue";
 import ListOfResult from "./components/ListOfResult.vue";
 import ListOfLocation from "./components/ListOfLocation.vue";
 import CurrentProperty from "./components/CurrentProperty.vue";
+import Favourites from "./components/Favourites.vue";
 
 export const routes = [
     { path: "", component: InitialPage, children: [
@@ -11,7 +12,8 @@ export const routes = [
         { path: "/error", component: ErrorSearch},
         { path: "/list", component: ListOfResult},
         { path: "/locations", component: ListOfLocation},
-        { path: "/current", component: CurrentProperty}
+        { path: "/current", component: CurrentProperty},
+        { path: "/favourites", component: Favourites}
     ]},
     { path: "*", redirect: "/"}
 ];

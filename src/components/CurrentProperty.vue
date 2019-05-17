@@ -2,7 +2,7 @@
     <div id="container">
         <div class="top-bar">
             <h3>Property Details</h3>
-            <button type="btn" class="add-btn">+</button>
+            <button type="btn" class="add-btn" @click="show">+</button>
         </div>
         <div class="content">
             <p>{{ currentProperty.price_formatted }}</p>
@@ -19,6 +19,11 @@ import { mapGetters } from "vuex";
 export default {
     computed: {
         ...mapGetters(["currentProperty"])
+    },
+    methods: {
+        show(event) {
+            console.log(event);
+        }
     }
 }
 </script>
