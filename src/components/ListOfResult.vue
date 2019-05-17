@@ -27,24 +27,24 @@ export default {
 
 
 <style scoped>
-.container {
-}
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.box {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #2c3e50;
-    margin: 5px;
-}
-.picture {
-    width: 80px;
-    height: 60px;
-    margin: 0 10px;
-}
+    @import "../css/constants.css";
+    
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .box {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border: 1px solid var(--main-color);
+        margin: 5px;
+    }
+    .picture {
+        width: 80px;
+        height: 60px;
+        margin: 0 10px;
+    }
 </style>
 

@@ -51,6 +51,8 @@ export default {
 </script>
 
 <style scoped>
+    @import "../css/constants.css";
+
     #container {
         width: 90%;
         margin: 0 auto;
@@ -66,11 +68,11 @@ export default {
     .btn {
         padding: 10px 15px;
         margin: 5px;
-        border: 2px solid #2c3e50;
+        border: 2px solid var(--main-color);
         background-color: transparent;
-        font-size: 16px;
+        font-size: var(--font-size);
         text-transform: uppercase;
-        color: #2c3e50;
+        color: var(--main-color);
         font-weight: bold;
         outline: none;
         cursor: pointer;

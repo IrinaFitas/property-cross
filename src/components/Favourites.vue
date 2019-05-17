@@ -25,6 +25,7 @@ export default {
 
 
 <style scoped>
+ @import "../css/constants.css";
 ul {
     list-style: none;
     margin: 0;
@@ -34,7 +35,7 @@ ul {
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid #2c3e50;
+    border: 1px solid var(--main-color);
     margin: 5px;
 }
 .picture {

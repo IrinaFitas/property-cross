@@ -27,6 +27,8 @@ export default {
 </script>
 
 <style scoped>
+    @import "../css/constants.css";
+
     #container {
         display: flex;
         flex-direction: column;
@@ -43,7 +45,7 @@ export default {
         cursor: pointer;
         font-weight: bold;
         font-size: 20px;
-        color: #2c3e50;
+        color: var(--main-color);
         box-shadow: 2px 2px 5px 0 rgba(92, 92, 138, 0.5);
     }
 </style>

@@ -25,10 +25,11 @@ export default {
 }
 </script>
 <style scoped>
+    @import "../css/constants.css";
     .box {
         width: 50%;
         margin: 0 auto;
-        border: 2px solid #2c3e50;
+        border: 2px solid var(--main-color);
     }
     .box p {
         padding: 16px;

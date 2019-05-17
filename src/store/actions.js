@@ -1,5 +1,6 @@
 import axios from "axios-jsonp-pro";
 import { BASE_URL } from "./../utils/constants.js";
+import { SUCCESS_CODE } from "./../utils/constants.js";
 import { vm } from "./../main.js";
 import { pick } from "./../utils/functions.js";
 
@@ -38,7 +39,7 @@ export const updateSearchList = async ( {commit}, payload) => {
             console.log(res);
             vm.$router.push("/result");
         } 
-        if (code === "200") {
+        if (code === SUCCESS_CODE) {
             commit("updateErrorText", "The location given was not recognised.");
             vm.$router.push("/error");
         } 
@@ -58,7 +59,7 @@ export const updateWithGeo = async ( {commit}, payload) => {
             commit("updateSearchList", listings);
             vm.$router.push("/result");
         }
-        if (code === "200") {
+        if (code === SUCCESS_CODE) {
             commit("updateErrorText", "The location given was not recognised.");
             vm.$router.push("/error");
         }
