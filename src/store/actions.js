@@ -5,9 +5,6 @@ import { vm } from "./../main.js";
 import { pick } from "./../utils/functions.js";
 import { save } from "./../utils/functions.js";
 import { state } from "./state.js";
-export const updateInputValue = ( {commit}, payload) => {
-    commit("updateInputValue", payload);
-};
 
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
@@ -53,8 +50,16 @@ export const updateSearchList = async ( {commit}, payload) => {
 };
 
 export const updateWithGeo = async ( {commit}, payload) => {
+    const position = { a: 51.684183, b: -3.431481};
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition( pos => {
+           position.a = pos.coords.latitude;
+           position.b = pos.coords.longitude;                     
+        });
+    }
     try {
-        const res = await axios.jsonp(`${BASE_URL}centre_point=51.684183,-3.431481`, { timeout: 5000});
+        const res = await axios.jsonp(`${BASE_URL}centre_point=${position.a},${position.b}`, { timeout: 5000});
         const listings = pick(["response", "listings"], res);
         const code = pick(["response", "application_response_code"], res);
 
@@ -66,6 +71,7 @@ export const updateWithGeo = async ( {commit}, payload) => {
             commit("updateErrorText", "The location given was not recognised.");
             vm.$router.push("/error");
         }
+        save(state);
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
         vm.$router.push("/error");

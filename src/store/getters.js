@@ -1,7 +1,3 @@
-export const inputValue = state => {
-    return state.inputValue;
-};
-
 export const searchList = state => {
     return state.searchList;
 };

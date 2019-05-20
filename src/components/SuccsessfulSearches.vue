@@ -22,12 +22,6 @@ export default {
             "updateListOfResult"
         ]) 
     }
-    // ,
-    // mounted() {
-    //     if (JSON.parse(localStorage.getItem("state")).searchList) {
-    //         console.log("Some");
-    //     }
-    // }
 }
 </script>
 <style scoped>
