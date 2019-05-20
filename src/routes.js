@@ -7,7 +7,7 @@ import CurrentProperty from "./components/CurrentProperty.vue";
 import Favourites from "./components/Favourites.vue";
 
 export const routes = [
-    { path: "", component: InitialPage, children: [
+    { path: "", component: InitialPage, redirect: "/result", children: [
         { path: "/result", component: SuccsessfulSearches},
         { path: "/error", component: ErrorSearch}
     ]},

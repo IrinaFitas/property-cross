@@ -3,7 +3,8 @@ import { BASE_URL } from "./../utils/constants.js";
 import { SUCCESS_CODE } from "./../utils/constants.js";
 import { vm } from "./../main.js";
 import { pick } from "./../utils/functions.js";
-
+import { save } from "./../utils/functions.js";
+import { state } from "./state.js";
 export const updateInputValue = ( {commit}, payload) => {
     commit("updateInputValue", payload);
 };
@@ -11,6 +12,7 @@ export const updateInputValue = ( {commit}, payload) => {
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
     vm.$router.push("/list");
+    save(state);
 };
 
 export const updateCurrentProperty = ( {commit}, payload) => {
@@ -21,6 +23,7 @@ export const updateCurrentProperty = ( {commit}, payload) => {
 export const updateFavouritesList = ( {commit}, payload) => {
     commit("updateFavouritesList", payload);
     vm.$router.push("/favourites");
+    save(state);
 };
 
 export const updateSearchList = async ( {commit}, payload) => {
@@ -42,6 +45,7 @@ export const updateSearchList = async ( {commit}, payload) => {
             commit("updateErrorText", "The location given was not recognised.");
             vm.$router.push("/error");
         } 
+        save(state);
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
         vm.$router.push("/error");
