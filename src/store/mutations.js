@@ -34,7 +34,6 @@ export const updateFavouritesList = (state, payload) => {
 };
 
 export const initialiseStore = (state) => {
-    console.log(store);
     if (localStorage.getItem("state")) {
         // Object.assign(state, JSON.parse(localStorage.getItem("state")));
         store.replaceState(Object.assign(state, JSON.parse(localStorage.getItem("state"))));
