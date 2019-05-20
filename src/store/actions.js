@@ -36,7 +36,6 @@ export const updateSearchList = async ( {commit}, payload) => {
         }
         if (listings.length) {
             commit("updateSearchList", listings);
-            console.log(res);
             vm.$router.push("/result");
         } 
         if (code === SUCCESS_CODE) {
@@ -68,8 +67,3 @@ export const updateWithGeo = async ( {commit}, payload) => {
         vm.$router.push("/error");
     }
 };
-
-
-
-
-

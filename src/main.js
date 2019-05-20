@@ -14,5 +14,8 @@ const router = new VueRouter({
 export const vm = new Vue({
 	render: h => h(App),
 	store,
-	router
+	router,
+	beforeCreate() {
+		this.$store.commit("initialiseStore");
+	}
 }).$mount('#app')
