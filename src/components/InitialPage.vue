@@ -2,19 +2,16 @@
     <div id="container">
         <div class="top-bar">
             <h1>PropertyCross</h1>
-            <button class="btn faves-btn" type="button" @click="showFavourite">Faves</button>
+            <a-button class="faves-btn" @click="showFavourite">Faves</a-button>
         </div>
         <p class="instruction-text">
             Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
-        </p>
-        <div>
-            <input class="btn search-field" 
-                type="search" placeholder="newcastle"
-                v-model="input"
-                @keyup.enter="updateValue">
+        </p>        
+        <div class="search-field">
+            <a-input size="large" type="search" placeholder="newcastle" v-model="input" @keyup.enter="updateValue"/>
         </div>
-        <button class="btn" type="button" @click="updateValue">Go</button>
-        <button class="btn" type="button" @click="updateWithGeo">My Location</button>
+        <a-button class="btn" @click="updateValue">Go</a-button>
+        <a-button class="btn" @click="updateWithGeo">My Location</a-button>
 
         <router-view></router-view>
     </div>
@@ -71,6 +68,7 @@ export default {
         border: 2px solid var(--main-color);
         background-color: transparent;
         font-size: var(--font-size);
+        line-height: 0.5;
         text-transform: uppercase;
         color: var(--main-color);
         font-weight: bold;
@@ -85,9 +83,20 @@ export default {
         width: 150px;
         height: 40px;
         padding: 0;
+        font-size: var(--font-size);
+        border: 2px solid var(--main-color);
+        color: var(--main-color);
     }
 
     .search-field {
-        width: 300px;
+        margin: 0 auto;
+        width: 300px;        
+    }
+
+    .search-field input {
+        border: 2px solid var(--main-color);
+        font-size: var(--font-size);
+        outline: none;
+        cursor: pointer;
     }
 </style>
