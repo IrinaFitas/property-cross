@@ -1,5 +1,5 @@
 export const updateSearchList = (state, payload) => {
-    state.searchList.push(payload);
+    state.searchList.unshift(payload);
 };
 
 export const updateErrorText = (state, payload) => {

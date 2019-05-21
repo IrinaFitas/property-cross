@@ -18,8 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     data () {
@@ -39,6 +38,7 @@ export default {
         ]),
         updateValue() {
             this.updateSearchList(this.input);
+            this.input = "";
         },
         showFavourite() {
             this.$router.push("/favourites");

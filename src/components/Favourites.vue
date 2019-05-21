@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h3>Favourites</h3>
+        <p v-if="!favouritesList.length">You have not added any properties to your favourites</p>
         <ul>
             <li v-for="(item, index) in favouritesList" :key="index">
                 <div class="box">
