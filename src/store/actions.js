@@ -1,6 +1,8 @@
 import axios from "axios-jsonp-pro";
 import { BASE_URL } from "./../utils/constants.js";
 import { SUCCESS_CODE } from "./../utils/constants.js";
+import { LOCATION_ERROR_MESSAGE } from "./../utils/constants.js";
+import { ERROR_MESSAGE } from "./../utils/constants.js";
 import { pick } from "./../utils/functions.js";
 import { save } from "./../utils/functions.js";
 import { state } from "./state.js";
@@ -39,12 +41,12 @@ export const updateSearchList = async ( {commit}, payload) => {
             router.push("/result");
         } 
         if (code === SUCCESS_CODE) {
-            commit("updateErrorText", "The location given was not recognised.");
+            commit("updateErrorText", LOCATION_ERROR_MESSAGE);
             router.push("/error");
         } 
         save(state);
     } catch(error) {
-        commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
+        commit("updateErrorText", ERROR_MESSAGE);
         router.push("/error");
     }
 };
@@ -67,12 +69,12 @@ export const updateWithGeo = async ( {commit}, payload) => {
             router.push("/result");
         }
         if (code === SUCCESS_CODE) {
-            commit("updateErrorText", "The location given was not recognised.");
+            commit("updateErrorText", LOCATION_ERROR_MESSAGE);
             router.push("/error");
         }
         save(state);
     } catch(error) {
-        commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
+        commit("updateErrorText", ERROR_MESSAGE);
         router.push("/error");
     }
 };
