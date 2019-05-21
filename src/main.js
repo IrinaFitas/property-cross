@@ -10,12 +10,12 @@ Vue.config.productionTip = false;
 Vue.use(Antd);
 
 Vue.use(VueRouter);
-const router = new VueRouter({
+export const router = new VueRouter({
 	routes,
 	mode: "history"
 });
 
-export const vm = new Vue({
+new Vue({
 	render: h => h(App),
 	store,
 	router,

@@ -1,25 +1,26 @@
 import axios from "axios-jsonp-pro";
 import { BASE_URL } from "./../utils/constants.js";
 import { SUCCESS_CODE } from "./../utils/constants.js";
-import { vm } from "./../main.js";
 import { pick } from "./../utils/functions.js";
 import { save } from "./../utils/functions.js";
 import { state } from "./state.js";
+import { router } from "./../main.js";
+import { version } from "moment";
 
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
-    vm.$router.push("/list");
+    router.push("/list");
     save(state);
 };
 
 export const updateCurrentProperty = ( {commit}, payload) => {
     commit("updateCurrentProperty", payload);
-    vm.$router.push("/current");
+    router.push("/current");
 };
 
 export const updateFavouritesList = ( {commit}, payload) => {
     commit("updateFavouritesList", payload);
-    vm.$router.push("/favourites");
+    router.push("/favourites");
     save(state);
 };
 
@@ -32,31 +33,34 @@ export const updateSearchList = async ( {commit}, payload) => {
                          
         if (locations.length > 1) {
             commit("updateLocations", locations);
-            vm.$router("/locations");
+            router("/locations");
         }
         if (listings.length) {
             commit("updateSearchList", listings);
-            vm.$router.push("/result");
+            router.push("/result");
         } 
         if (code === SUCCESS_CODE) {
             commit("updateErrorText", "The location given was not recognised.");
-            vm.$router.push("/error");
+            router.push("/error");
         } 
         save(state);
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
-        vm.$router.push("/error");
+        router.push("/error");
     }
 };
 
 export const updateWithGeo = async ( {commit}, payload) => {
-    const position = { a: 51.684183, b: -3.431481};
+    let position = null;
 
     if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition( pos => {
-           position.a = pos.coords.latitude;
-           position.b = pos.coords.longitude;                     
-        });
+        navigator.geolocation.getCurrentPosition( (pos) => {
+            const { coords: { latitude: a, longitude: b } } = pos;
+            position = {
+                a,
+                b
+            };
+        }); 
     }
     try {
         const res = await axios.jsonp(`${BASE_URL}centre_point=${position.a},${position.b}`, { timeout: 5000});
@@ -65,15 +69,15 @@ export const updateWithGeo = async ( {commit}, payload) => {
 
         if (listings.length) {
             commit("updateSearchList", listings);
-            vm.$router.push("/result");
+            router.push("/result");
         }
         if (code === SUCCESS_CODE) {
             commit("updateErrorText", "The location given was not recognised.");
-            vm.$router.push("/error");
+            router.push("/error");
         }
         save(state);
     } catch(error) {
         commit("updateErrorText", "An error occurred while searching. Please check your network connection and try again");
-        vm.$router.push("/error");
+        router.push("/error");
     }
 };

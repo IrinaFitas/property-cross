@@ -23,8 +23,9 @@ export const updateFavouritesList = (state, payload) => {
 };
 
 export const initialiseStore = (state) => {
-    if (localStorage.getItem("state")) {
-        const initialState = JSON.parse(localStorage.getItem("state"));
+    const savedState = localStorage.getItem("state");
+    if (savedState) {
+        const initialState = JSON.parse(savedState);
         Object.assign(state, initialState);
     }
 };
