@@ -5,7 +5,6 @@ import { pick } from "./../utils/functions.js";
 import { save } from "./../utils/functions.js";
 import { state } from "./state.js";
 import { router } from "./../main.js";
-import { version } from "moment";
 
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
@@ -51,15 +50,11 @@ export const updateSearchList = async ( {commit}, payload) => {
 };
 
 export const updateWithGeo = async ( {commit}, payload) => {
-    let position = null;
+    const position = {};
 
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition( (pos) => {
-            const { coords: { latitude: a, longitude: b } } = pos;
-            position = {
-                a,
-                b
-            };
+            ({ coords: { latitude: position.a, longitude: position.b } } = pos);
         }); 
     }
     try {
