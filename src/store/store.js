@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { pick } from "./../utils/functions.js";
 import { state } from "./state.js";
 import * as getters from "./getters.js";
 import * as mutations from "./mutations.js";

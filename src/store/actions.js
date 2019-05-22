@@ -57,7 +57,7 @@ export const updateSearchList = async ( {commit}, payload) => {
     }
 };
 
-export const updateWithGeo = async ( {commit}, payload) => {
+export const updateWithGeo = async ( {commit} ) => {
     const position = {};
 
     if ("geolocation" in navigator) {
