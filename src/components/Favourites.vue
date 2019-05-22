@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <app-navigation></app-navigation>
         <h3>Favourites</h3>
         <p v-if="!favouritesList.length">You have not added any properties to your favourites</p>
         <ul>
@@ -16,8 +17,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Navigation from "./Navigation.vue";
 
 export default {
+    components: {
+        appNavigation: Navigation
+    },
     computed: {
         ...mapGetters(["favouritesList"])
     }
@@ -26,7 +31,10 @@ export default {
 
 
 <style scoped>
- @import "../css/constants.css";
+@import "../css/constants.css";
+.container {
+    position: relative;
+}
 ul {
     list-style: none;
     margin: 0;
@@ -35,7 +43,6 @@ ul {
 .box {
     display: flex;
     align-items: center;
-    width: 100%;
     border: 1px solid var(--main-color);
     margin: 5px;
 }

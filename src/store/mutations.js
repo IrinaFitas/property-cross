@@ -22,6 +22,15 @@ export const updateFavouritesList = (state, payload) => {
     state.favouritesList.push(payload);
 };
 
+export const removeFromFavouritesList = (state, payload) => {
+    const ind = state.favouritesList.findIndex( elem => {
+        elem.title === payload.title;
+    });
+    console.log(payload.title);
+    console.log(ind);
+    state.favouritesList.splice(ind, 1);
+};
+
 export const initialiseStore = (state) => {
     const savedState = localStorage.getItem("state");
     if (savedState) {

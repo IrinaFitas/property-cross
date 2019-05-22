@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <app-navigation></app-navigation>
+        <p>{{ listOfResult.length }} of {{ listOfResult.length }} matches</p>
         <ul>
             <li v-for="(item, index) in listOfResult" :key="index" @click="updateCurrentProperty(item)">
                 <div class="box">
@@ -14,8 +16,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Navigation from "./Navigation.vue";
 
 export default {
+    components: {
+        appNavigation: Navigation
+    },
     computed: {
         ...mapGetters(["listOfResult"])
     },
@@ -28,16 +34,21 @@ export default {
 
 <style scoped>
     @import "../css/constants.css";
-    
+    .container {
+        position: relative;
+    }
     ul {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+    li {
+        padding: 0;
+    }
     .box {
         display: flex;
         align-items: center;
-        width: 100%;
+        box-sizing: border-box;
         border: 1px solid var(--main-color);
         margin: 5px;
     }

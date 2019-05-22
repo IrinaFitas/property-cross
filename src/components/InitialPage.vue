@@ -21,7 +21,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-    data () {
+    data() {
         return {
             input: ""
         }

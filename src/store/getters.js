@@ -21,3 +21,7 @@ export const currentProperty = state => {
 export const favouritesList = state => {
     return state.favouritesList;
 };
+
+export const checkInFavourite = state => title => {
+    return !!state.favouritesList.find(elem => elem.title === title);
+}

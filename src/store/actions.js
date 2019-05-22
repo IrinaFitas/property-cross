@@ -25,6 +25,11 @@ export const updateFavouritesList = ( {commit}, payload) => {
     save(state);
 };
 
+export const removeFromFavouritesList = ( {commit}, payload) => {
+    commit("removeFromFavouritesList", payload);
+    save(state);
+};
+
 export const updateSearchList = async ( {commit}, payload) => {
     try {
         const res = await axios.jsonp(`${BASE_URL}place_name=${payload}`, { timeout: 5000});

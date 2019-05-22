@@ -1,5 +1,6 @@
 <template>
-    <div class="box">
+    <div class="container">
+        <app-navigation></app-navigation>
         <p>Locations</p>
         <p 
             v-for="(item, index) in locations" 
@@ -12,8 +13,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Navigation from "./Navigation.vue";
 
 export default {
+    components: {
+        appNavigation: Navigation
+    },
     computed: {
         ...mapGetters([
             "locations"
@@ -22,4 +27,7 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+    position: relative;
+}</style>
