@@ -3,8 +3,8 @@
         <app-navigation></app-navigation>
         <div class="top-bar">
             <h3>Property Details</h3>
-            <button type="btn" class="add-btn" @click="addFavourite(currentProperty)">+</button>
-            <button type="btn" class="add-btn" @click.once="removeFavourite(currentProperty)">-</button>
+            <button type="btn" v-if="!addFavour" class="add-btn" @click="addFavourite(currentProperty)">+</button>
+            <button type="btn" v-if="addFavour" class="add-btn" @click.once="removeFavourite(currentProperty)">-</button>
         </div>
         <div class="content">
             <p>{{ currentProperty.price_formatted }}</p>
@@ -48,7 +48,7 @@ export default {
         },
         checkCurrentProperty() {
             this.addFavour = this.checkInFavourite(this.currentProperty.title);
-            this.textButton = this.addFavour ? "-" : "+";
+            // this.textButton = this.addFavour ? "-" : "+";
         }
     }
 }

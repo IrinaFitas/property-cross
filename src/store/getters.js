@@ -18,10 +18,10 @@ export const currentProperty = state => {
     return state.currentProperty;
 };
 
-export const favouritesList = state => {
-    return state.favouritesList;
+export const favourite = state => {
+    return state.favourite;
 };
 
 export const checkInFavourite = state => title => {
-    return !!state.favouritesList.find(elem => elem.title === title);
+    return !!state.favourite.some(elem => elem.title === title);
 }

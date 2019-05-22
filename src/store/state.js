@@ -4,5 +4,5 @@ export const state = {
     locations: [],
     listOfResult: [],
     currentProperty: "",
-    favouritesList: []
+    favourite: []
 };

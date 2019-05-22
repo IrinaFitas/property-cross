@@ -9,11 +9,9 @@
 export default {
     methods: {
         goPrev() {
-            console.log("prev");
             this.$router.go(-1);
         },
         goMain() {
-            console.log("main");
             this.$router.push("/result");
         }
     }

@@ -19,16 +19,14 @@ export const updateCurrentProperty = (state, payload) => {
 };
 
 export const updateFavouritesList = (state, payload) => {
-    state.favouritesList.push(payload);
+    state.favourite.push(payload);
 };
 
 export const removeFromFavouritesList = (state, payload) => {
-    const ind = state.favouritesList.findIndex( elem => {
-        elem.title === payload.title;
+    const ind = state.favourite.findIndex( elem => {
+        return elem.title === payload.title;
     });
-    console.log(payload.title);
-    console.log(ind);
-    state.favouritesList.splice(ind, 1);
+    state.favourite.splice(ind, 1);
 };
 
 export const initialiseStore = (state) => {

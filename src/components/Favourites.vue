@@ -2,9 +2,9 @@
     <div class="container">
         <app-navigation></app-navigation>
         <h3>Favourites</h3>
-        <p v-if="!favouritesList.length">You have not added any properties to your favourites</p>
+        <p v-if="!favourite.length">You have not added any properties to your favourites</p>
         <ul>
-            <li v-for="(item, index) in favouritesList" :key="index">
+            <li v-for="(item, index) in favourite" :key="index">
                 <div class="box">
                     <img :src="item.thumb_url" alt="">
                     <p>{{ item.price_formatted }}</p>
@@ -24,7 +24,7 @@ export default {
         appNavigation: Navigation
     },
     computed: {
-        ...mapGetters(["favouritesList"])
+        ...mapGetters(["favourite"])
     }
 }
 </script>

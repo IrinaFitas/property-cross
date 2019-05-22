@@ -27,6 +27,7 @@ export const updateFavouritesList = ( {commit}, payload) => {
 
 export const removeFromFavouritesList = ( {commit}, payload) => {
     commit("removeFromFavouritesList", payload);
+    router.push("/favourites");
     save(state);
 };
 
