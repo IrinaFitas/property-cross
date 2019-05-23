@@ -66,19 +66,38 @@ export default {
 
             if (!this.user.lastName) {
                 this.errors.push("Input your last name, please");
-            }
-
-            if (!this.user.email) {
-                this.errors.push("Input your email, please");
-            }
-
+            }            
+            this.validateEmail();
+            this.validatePass();
+            this.validateConfirmPass();
+        },
+        validatePass() {
             if (!this.user.password) {
                 this.errors.push("Input your  password, please");
             }
-
+            if (this.user.password && this.user.password.length < 6) {
+                this.errors.push("The password should have 6 characters");
+            } 
+        },
+        validateConfirmPass() {
             if (!this.user.confirmPassword) {
                 this.errors.push("Input your  confirmPassword, please");
             }
+
+            if (this.user.password !== this.user.confirmPassword) {
+                this.errors.push("The passwords don`t match");
+            }
+        },
+        validateEmail() {
+            if (!this.user.email) {
+                this.errors.push("Input your email, please");
+            } else if (!this.checkEmail(this.user.email)) {
+                this.errors.push("Your email is not correct");
+            }
+        },
+        checkEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
         }
     }
 }
