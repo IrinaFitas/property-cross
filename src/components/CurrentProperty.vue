@@ -3,7 +3,7 @@
         <app-navigation></app-navigation>
         <div class="top-bar">
             <h3>Property Details</h3>
-            <button type="btn" v-if="addFavour" class="add-btn" @click="addFavourite(currentProperty)">+</button>
+            <button type="btn" v-if="!addFavour" class="add-btn" @click="addFavourite(currentProperty)">+</button>
             <button type="btn" v-else class="add-btn" @click.once="removeFavourite(currentProperty)">-</button>
         </div>
         <div class="content">
@@ -28,7 +28,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["currentProperty", "checkInFavourite"])
+        ...mapGetters(["currentProperty"])
     },
     // mounted() {
     //     this.checkCurrentProperty();

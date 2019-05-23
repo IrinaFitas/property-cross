@@ -22,6 +22,6 @@ export const favourite = state => {
     return state.favourite;
 };
 
-export const checkInFavourite = state => title => {
-    return !!state.favourite.some(elem => elem.title === title);
-}
+// export const checkInFavourite = state => title => {
+//     return !!state.favourite.some(elem => elem.title === title);
+// }
