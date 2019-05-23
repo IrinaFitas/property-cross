@@ -30,9 +30,9 @@ export default {
     computed: {
         ...mapGetters(["currentProperty"])
     },
-    // mounted() {
-    //     this.checkCurrentProperty();
-    // },
+    created() {
+        this.checkCurrentProperty();
+    },
     methods: {
         ...mapActions([
             "updateFavouritesList", 
@@ -45,10 +45,10 @@ export default {
         removeFavourite(current) {
             this.removeFromFavouritesList(current);
             this.addFavour = true;
+        },
+        checkCurrentProperty() {
+            this.addFavour = this.checkInFavourite(this.currentProperty.title);
         }
-        // checkCurrentProperty() {
-        //     this.addFavour = this.checkInFavourite(this.currentProperty.title);
-        // }
     }
 }
 </script>
@@ -75,5 +75,6 @@ export default {
         font-size: 20px;
         color: var(--main-color);
         box-shadow: 2px 2px 5px 0 rgba(92, 92, 138, 0.5);
+        cursor: pointer;
     }
 </style>

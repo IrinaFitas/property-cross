@@ -51,6 +51,10 @@ export default {
         box-sizing: border-box;
         border: 1px solid var(--main-color);
         margin: 5px;
+        cursor: pointer;
+    }
+    .box:hover {
+        background-color: var(--main-color-hover);
     }
     .picture {
         width: 80px;

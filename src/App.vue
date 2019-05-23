@@ -1,17 +1,8 @@
 <template>
   <div id="app">
-	  <router-view></router-view>
+		<router-view></router-view>
   </div>
 </template>
-
-<script>
-import InitialPage from "./components/InitialPage.vue";
-export default {
-	components: {
-		appInitialPage: InitialPage
-	}
-}
-</script>
 
 <style>
 @import "./css/constants.css";
