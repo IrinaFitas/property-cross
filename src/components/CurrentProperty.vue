@@ -28,7 +28,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["currentProperty"])
+        ...mapGetters(["currentProperty", "checkInFavourite"])
     },
     created() {
         this.checkCurrentProperty();

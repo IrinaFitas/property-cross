@@ -5,6 +5,7 @@ import ListOfResult from "./components/ListOfResult.vue";
 import ListOfLocation from "./components/ListOfLocation.vue";
 import CurrentProperty from "./components/CurrentProperty.vue";
 import Favourites from "./components/Favourites.vue";
+import RegistrationForm from "./components/RegistrationForm.vue";
 
 export const routes = [
     { path: "", component: InitialPage, redirect: "/result", children: [
@@ -15,5 +16,6 @@ export const routes = [
     { path: "/locations", component: ListOfLocation},
     { path: "/current", component: CurrentProperty},
     { path: "/favourites", component: Favourites},
+    { path: "/form", component: RegistrationForm},
     { path: "*", redirect: "/"}
 ];
