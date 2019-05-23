@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Form Registration:</h3>
-        <a-form class="form" @submit="validateAndSend" method="POST" novalidate="true">
+        <a-form class="form" @submit="validateAndSend" novalidate="true">
             <a-form-item label="First Name:" :label-col="labelCol" :wrapper-col="wrapperCol">
                 <a-input placeholder="first name" v-model="user.name" />
             </a-form-item>            
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { requiredFieldMessage } from "./../utils/functions.js";
+import { checkEmail } from "./../utils/functions.js";
 export default {
     data() {
         return {
@@ -59,11 +61,11 @@ export default {
         validateAndSend(e) {
             e.preventDefault();
             if (!this.user.name) {
-                this.errors.push("Input your name, please.");
+                this.errors.push(requiredFieldMessage("name"));
             }
 
             if (!this.user.lastName) {
-                this.errors.push("Input your last name, please.");
+                this.errors.push(requiredFieldMessage("last name"));
             }            
             this.validateEmail();
             this.validatePass();
@@ -75,7 +77,7 @@ export default {
         },
         validatePass() {
             if (!this.user.password) {
-                this.errors.push("Input your  password, please.");
+                this.errors.push(requiredFieldMessage("password"));
             }
             if (this.user.password && this.user.password.length < 6) {
                 this.errors.push("The password should have 6 characters.");
@@ -83,7 +85,7 @@ export default {
         },
         validateConfirmPass() {
             if (!this.user.confirmPassword) {
-                this.errors.push("Input your  confirmPassword, please.");
+                this.errors.push(requiredFieldMessage("confirmPassword"));
             }
 
             if (this.user.password !== this.user.confirmPassword) {
@@ -92,14 +94,10 @@ export default {
         },
         validateEmail() {
             if (!this.user.email) {
-                this.errors.push("Input your email, please.");
-            } else if (!this.checkEmail(this.user.email)) {
+                this.errors.push(requiredFieldMessage("email"));
+            } else if (!checkEmail(this.user.email)) {
                 this.errors.push("Your email is not correct.");
             }
-        },
-        checkEmail(email) {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
         }
     }
 }
@@ -112,22 +110,21 @@ export default {
         margin-bottom: 15px;
         font-size: 20px;
     }
-    .form {
+    .form,
+    .error-box {
         width: 50%;
-        padding: 15px;
         border-radius: 7px;
-        border: 1px solid var(--main-color);
         box-shadow: 3px 2px 3px 0 var(--main-color);
         margin: 0 auto;
+        padding: 15px;
+    } 
+    .form {        
+        padding: 15px;        
+        border: 1px solid var(--main-color);      
     }
 
     .error-box {
-        border: 1px solid red;
-        border-radius: 7px;
-        box-shadow: 3px 2px 3px 0 var(--main-color);
-        width: 50%;
-        padding: 10px;
-        margin: 0 auto;
+        border: 1px solid red;        
         margin-top: 20px;
     }
 </style>
