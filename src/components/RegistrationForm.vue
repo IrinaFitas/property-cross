@@ -37,6 +37,8 @@
 import { requiredFieldMessage } from "./../utils/functions.js";
 import { checkEmail } from "./../utils/functions.js";
 import axios from "axios-jsonp-pro";
+import { API_KEY } from "./../utils/constants.js";
+import { BASE_AUTH_URL } from "./../utils/constants.js";
 export default {
     data() {
         return {
@@ -101,7 +103,7 @@ export default {
             }
         },
         submit() {
-            axios.post("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBE4UH5P7oGR34BlrM1-KRoi7pxNWE768A", {
+            axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
                 email: this.user.email,
                 password: this.user.password,
                 returnSecureToken: true
