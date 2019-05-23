@@ -3,7 +3,8 @@
         <div class="top-bar">
             <div class="main-btns">
                 <a-button class="faves-btn" @click="showFavourite">Faves</a-button>
-                <a-button class="faves-btn" @click="showRegisterForm">Login</a-button>
+                <a-button class="faves-btn" @click="showRegisterForm">Register</a-button>
+                <a-button class="faves-btn" @click="showLogin">Login</a-button>
             </div>
         </div>
             <h1>PropertyCross</h1>
@@ -48,6 +49,9 @@ export default {
         },
         showRegisterForm() {
            this.$router.push("/form"); 
+        },
+        showLogin() {
+            this.$router.push("/login");
         }
     }
 }

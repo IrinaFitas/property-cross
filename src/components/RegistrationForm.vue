@@ -36,6 +36,7 @@
 <script>
 import { requiredFieldMessage } from "./../utils/functions.js";
 import { checkEmail } from "./../utils/functions.js";
+import axios from "axios-jsonp-pro";
 export default {
     data() {
         return {
@@ -72,7 +73,7 @@ export default {
             this.validateConfirmPass();
 
             if (!this.errors.length) {
-                return true;
+                this.submit();
             }
         },
         validatePass() {
@@ -98,6 +99,14 @@ export default {
             } else if (!checkEmail(this.user.email)) {
                 this.errors.push("Your email is not correct.");
             }
+        },
+        submit() {
+            axios.post("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBE4UH5P7oGR34BlrM1-KRoi7pxNWE768A", {
+                email: this.user.email,
+                password: this.user.password,
+                returnSecureToken: true
+            }).then( res => console.log(res))
+            .catch( error => console.log(error));
         }
     }
 }
