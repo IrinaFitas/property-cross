@@ -26,12 +26,10 @@
                 <a-button type="primary" html-type="submit">Register</a-button>
             </a-form-item>
         </a-form>
-        <p>{{ user.name }}</p>
-        <p>{{ user.lastName}}</p>
-        <p>{{ user.email}}</p>
-        <p>{{ user.password }}</p>
-        <p>{{ user.confirmPassword }}</p>
-        <p v-for="(error, index) in errors" :key="index">{{ error }}</p>
+
+        <div class="error-box" v-if="this.errors.length">
+            <p v-for="(error, index) in errors" :key="index">{{ error }}</p>
+        </div>
     </div>
 </template>
 
@@ -61,38 +59,42 @@ export default {
         validateAndSend(e) {
             e.preventDefault();
             if (!this.user.name) {
-                this.errors.push("Input your name, please");
+                this.errors.push("Input your name, please.");
             }
 
             if (!this.user.lastName) {
-                this.errors.push("Input your last name, please");
+                this.errors.push("Input your last name, please.");
             }            
             this.validateEmail();
             this.validatePass();
             this.validateConfirmPass();
+
+            if (!this.errors.length) {
+                return true;
+            }
         },
         validatePass() {
             if (!this.user.password) {
-                this.errors.push("Input your  password, please");
+                this.errors.push("Input your  password, please.");
             }
             if (this.user.password && this.user.password.length < 6) {
-                this.errors.push("The password should have 6 characters");
+                this.errors.push("The password should have 6 characters.");
             } 
         },
         validateConfirmPass() {
             if (!this.user.confirmPassword) {
-                this.errors.push("Input your  confirmPassword, please");
+                this.errors.push("Input your  confirmPassword, please.");
             }
 
             if (this.user.password !== this.user.confirmPassword) {
-                this.errors.push("The passwords don`t match");
+                this.errors.push("The passwords don`t match.");
             }
         },
         validateEmail() {
             if (!this.user.email) {
-                this.errors.push("Input your email, please");
+                this.errors.push("Input your email, please.");
             } else if (!this.checkEmail(this.user.email)) {
-                this.errors.push("Your email is not correct");
+                this.errors.push("Your email is not correct.");
             }
         },
         checkEmail(email) {
@@ -117,5 +119,15 @@ export default {
         border: 1px solid var(--main-color);
         box-shadow: 3px 2px 3px 0 var(--main-color);
         margin: 0 auto;
+    }
+
+    .error-box {
+        border: 1px solid red;
+        border-radius: 7px;
+        box-shadow: 3px 2px 3px 0 var(--main-color);
+        width: 50%;
+        padding: 10px;
+        margin: 0 auto;
+        margin-top: 20px;
     }
 </style>

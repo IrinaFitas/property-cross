@@ -1,9 +1,12 @@
 <template>
     <div id="container">
         <div class="top-bar">
-            <h1>PropertyCross</h1>
-            <a-button class="faves-btn" @click="showFavourite">Faves</a-button>
+            <div class="main-btns">
+                <a-button class="faves-btn" @click="showFavourite">Faves</a-button>
+                <a-button class="faves-btn" @click="showRegisterForm">Login</a-button>
+            </div>
         </div>
+            <h1>PropertyCross</h1>
         <p class="instruction-text">
             Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!
         </p>        
@@ -42,6 +45,9 @@ export default {
         },
         showFavourite() {
             this.$router.push("/favourites");
+        },
+        showRegisterForm() {
+           this.$router.push("/form"); 
         }
     }
 }
@@ -58,8 +64,7 @@ export default {
     .top-bar {
         display: flex;
     }
-
-    h1 {
+    .main-btns {
         margin-left: auto;
     }
     .btn {
@@ -75,9 +80,7 @@ export default {
         outline: none;
         cursor: pointer;
     }
-
     .faves-btn {
-        margin-left: auto;
         flex-shrink: 0;
         align-self: center;
         width: 150px;
