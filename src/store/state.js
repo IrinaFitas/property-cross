@@ -6,5 +6,6 @@ export const state = {
     currentProperty: "",
     favourite: [],
     idToken: null,
-    userId: null
+    userId: null,
+    user: null
 };

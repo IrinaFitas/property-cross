@@ -24,4 +24,8 @@ export const favourite = state => {
 
 export const checkInFavourite = state => title => {
     return state.favourite.some(elem => elem.title === title);
-}
+};
+
+export const user = state => {
+    return state.user;
+};

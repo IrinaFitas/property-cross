@@ -42,3 +42,8 @@ export const authUser = (state, payload) => {
     state.idToken = payload.token;
     state.userId = payload.userId;
 };
+
+export const storeUser = (state, payload) => {
+    console.log(payload);
+    state.user = payload;
+};

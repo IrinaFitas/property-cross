@@ -87,7 +87,7 @@ export const updateWithGeo = async ( {commit} ) => {
     }
 };
 
-export const register = ({ commit }, payload) => {
+export const register = ({ commit, dispatch }, payload) => {
     const { email, password } = payload;
 
         axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
@@ -100,12 +100,13 @@ export const register = ({ commit }, payload) => {
                 token: res.data.idToken,
                 userId: res.data.localId
             });
+            dispatch("storeUser", payload);
+            save(state);
         })
         .catch( error => console.log(error));
-    console.log(12);
 };
 
-export const login = ({ commit }, payload) => {
+export const login = ({ commit, dispatch }, payload) => {
     const { email, password } = payload;
 
         axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
@@ -118,9 +119,35 @@ export const login = ({ commit }, payload) => {
                 token: res.data.idToken,
                 userId: res.data.localId
             });
+            save(state);
         })
         .catch( error => console.log(error));
 };
 
-export const storeUser = ({ commit }, payload) => {};
-export const fetchUser = ({ commit }, payload) => {};
+export const storeUser = ({ commit, state }, payload) => {
+    if (!state.idToken) {
+        return;
+    }
+    axios.post("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken, payload)
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+};
+export const fetchUser = ({ commit }, payload) => {
+    if (!state.idToken) {
+        return;
+    }
+    axios.get("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken)
+        .then(res => {
+            console.log(res);
+            const data = res.data;
+            const users = [];
+            for (let key in data) {
+                const user = data[key];
+                user.id = key;
+                users.push(user);
+            }
+            console.log(users);
+            commit("storeUser", users[0]);
+        })
+        .catch(error => console.log(error));
+};

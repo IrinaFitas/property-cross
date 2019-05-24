@@ -1,11 +1,7 @@
 <template>
     <div id="container">
         <div class="top-bar">
-            <div class="main-btns">
-                <a-button class="faves-btn" @click="showFavourite">Faves</a-button>
-                <a-button class="faves-btn" @click="showRegisterForm">Register</a-button>
-                <a-button class="faves-btn" @click="showLogin">Login</a-button>
-            </div>
+           <a-button class="faves-btn" @click="showFavourite">Faves</a-button>                           
         </div>
             <h1>PropertyCross</h1>
         <p class="instruction-text">
@@ -46,12 +42,6 @@ export default {
         },
         showFavourite() {
             this.$router.push("/favourites");
-        },
-        showRegisterForm() {
-           this.$router.push("/form"); 
-        },
-        showLogin() {
-            this.$router.push("/login");
         }
     }
 }
@@ -68,9 +58,7 @@ export default {
     .top-bar {
         display: flex;
     }
-    .main-btns {
-        margin-left: auto;
-    }
+    
     .btn {
         padding: 10px 15px;
         margin: 5px;
@@ -85,6 +73,7 @@ export default {
         cursor: pointer;
     }
     .faves-btn {
+        margin-left: auto;
         flex-shrink: 0;
         align-self: center;
         width: 150px;

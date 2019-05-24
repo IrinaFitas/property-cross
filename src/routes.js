@@ -7,9 +7,11 @@ import CurrentProperty from "./components/CurrentProperty.vue";
 import Favourites from "./components/Favourites.vue";
 import RegistrationForm from "./components/RegistrationForm.vue";
 import Login from "./components/Login.vue";
+import Header from "./components/Header.vue";
 
 export const routes = [
-    { path: "", component: InitialPage, redirect: "/result", children: [
+    { path: "", component: Header},
+    { path: "/main", component: InitialPage, redirect: "/result", children: [
         { path: "/result", component: SuccsessfulSearches},
         { path: "/error", component: ErrorSearch}
     ]},
