@@ -1,5 +1,5 @@
 <template>
-    <a-form class="form" novalidate="true" @submit="login">
+    <a-form class="form" novalidate="true" @submit.prevent="logining">
         <a-form-item label="Email:" :label-col="labelCol" :wrapper-col="wrapperCol">
             <a-input placeholder="email" type="email" v-model="user.email" />
         </a-form-item>
@@ -18,6 +18,7 @@
 import axios from "axios-jsonp-pro";
 import { API_KEY } from "./../utils/constants.js";
 import { BASE_AUTH_URL } from "./../utils/constants.js";
+import { mapActions } from 'vuex';
 
 export default {
     data() {
@@ -37,14 +38,9 @@ export default {
         };
     },
     methods: {
-        login(e) {
-            e.preventDefault();
-            axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
-                email: this.user.email,
-                password: this.user.password,
-                returnSecureToken: true
-            }).then( res => console.log(res))
-            .catch( error => console.log(error));
+        ...mapActions(["login"]),
+        logining() {
+            this.login(this.user);
         }
     }
 }

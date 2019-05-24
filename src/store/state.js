@@ -4,5 +4,7 @@ export const state = {
     locations: [],
     listOfResult: [],
     currentProperty: "",
-    favourite: []
+    favourite: [],
+    idToken: null,
+    userId: null
 };

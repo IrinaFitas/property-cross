@@ -36,3 +36,9 @@ export const initialiseStore = (state) => {
         Object.assign(state, initialState);
     }
 };
+
+export const authUser = (state, payload) => {
+    console.log(payload);
+    state.idToken = payload.token;
+    state.userId = payload.userId;
+};

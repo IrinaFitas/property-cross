@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Form Registration:</h3>
-        <a-form class="form" @submit="validateAndSend" novalidate="true">
+        <a-form class="form" @submit.prevent="send" novalidate="true">
             <a-form-item label="First Name:" :label-col="labelCol" :wrapper-col="wrapperCol">
                 <a-input placeholder="first name" v-model="user.name" />
             </a-form-item>            
@@ -36,9 +36,8 @@
 <script>
 import { requiredFieldMessage } from "./../utils/functions.js";
 import { checkEmail } from "./../utils/functions.js";
-import axios from "axios-jsonp-pro";
-import { API_KEY } from "./../utils/constants.js";
-import { BASE_AUTH_URL } from "./../utils/constants.js";
+import { mapActions } from "vuex";
+
 export default {
     data() {
         return {
@@ -61,8 +60,8 @@ export default {
         };
     },
     methods: {
-        validateAndSend(e) {
-            e.preventDefault();
+        ...mapActions(["register"]),
+        validate() {
             if (!this.user.name) {
                 this.errors.push(requiredFieldMessage("name"));
             }
@@ -74,9 +73,9 @@ export default {
             this.validatePass();
             this.validateConfirmPass();
 
-            if (!this.errors.length) {
-                this.submit();
-            }
+            
+            return this.errors.length;
+            
         },
         validatePass() {
             if (!this.user.password) {
@@ -102,13 +101,10 @@ export default {
                 this.errors.push("Your email is not correct.");
             }
         },
-        submit() {
-            axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
-                email: this.user.email,
-                password: this.user.password,
-                returnSecureToken: true
-            }).then( res => console.log(res))
-            .catch( error => console.log(error));
+        send() {
+            if (!this.validate()) {
+                this.register(this.user);
+            }
         }
     }
 }

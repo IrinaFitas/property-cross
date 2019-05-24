@@ -7,6 +7,8 @@ import { pick } from "./../utils/functions.js";
 import { save } from "./../utils/functions.js";
 import { state } from "./state.js";
 import { router } from "./../main.js";
+import { API_KEY } from "./../utils/constants.js";
+import { BASE_AUTH_URL } from "./../utils/constants.js";
 
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
@@ -84,3 +86,41 @@ export const updateWithGeo = async ( {commit} ) => {
         router.push("/error");
     }
 };
+
+export const register = ({ commit }, payload) => {
+    const { email, password } = payload;
+
+        axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
+            email,
+            password,
+            returnSecureToken: true
+        }).then( res => {
+            console.log(res);
+            commit("authUser", {
+                token: res.data.idToken,
+                userId: res.data.localId
+            });
+        })
+        .catch( error => console.log(error));
+    console.log(12);
+};
+
+export const login = ({ commit }, payload) => {
+    const { email, password } = payload;
+
+        axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
+            email,
+            password,
+            returnSecureToken: true
+        }).then( res => {
+            console.log(res);
+            commit("authUser", {
+                token: res.data.idToken,
+                userId: res.data.localId
+            });
+        })
+        .catch( error => console.log(error));
+};
+
+export const storeUser = ({ commit }, payload) => {};
+export const fetchUser = ({ commit }, payload) => {};
