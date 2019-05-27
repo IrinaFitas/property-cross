@@ -39,13 +39,11 @@ export const initialiseStore = (state, payload) => {
 };
 
 export const authUser = (state, payload) => {
-    console.log(payload);
     state.idToken = payload.token;
     state.userId = payload.userId;
 };
 
 export const storeUser = (state, payload) => {
-    console.log(payload);
     state.user = payload;
 };
 

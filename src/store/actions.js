@@ -87,51 +87,58 @@ export const updateWithGeo = async ( {commit} ) => {
     }
 };
 
-export const register = ({ commit, dispatch }, payload) => {
-    const { email, password } = payload;
+export const register = async ({ commit, dispatch }, payload) => {
 
-        axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
+    try {
+        const { email, password } = payload;
+        const res = await axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
+                email,
+                password,
+                returnSecureToken: true
+            });
+        
+        commit("authUser", {
+            token: res.data.idToken,
+            userId: res.data.localId
+        });
+        dispatch("storeUser", payload);
+        save(state);
+        router.push("/");
+    } catch(error) {
+        console.log(error);
+    }
+};
+
+export const login = async ({ commit, dispatch }, payload) => {
+    try {
+        const { email, password } = payload;
+        const res = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
             email,
             password,
             returnSecureToken: true
-        }).then( res => {
-            console.log(res);
-            commit("authUser", {
-                token: res.data.idToken,
-                userId: res.data.localId
-            });
-            dispatch("storeUser", payload);
-            save(state);
-            router.push("/");
-        }).catch( error => console.log(error));
+        });
+
+        commit("authUser", {
+            token: res.data.idToken,
+            userId: res.data.localId
+        });
+        commit("initialiseStore", res.data.localId);
+        router.push("/");
+    } catch(error) {
+        console.log(error);
+    }
 };
 
-export const login = ({ commit, dispatch }, payload) => {
-    const { email, password } = payload;
-
-        axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
-            email,
-            password,
-            returnSecureToken: true
-        }).then( res => {
-            console.log(res);
-            commit("authUser", {
-                token: res.data.idToken,
-                userId: res.data.localId
-            });
-            commit("initialiseStore", res.data.localId);
-            router.push("/");
-        })
-        .catch( error => console.log(error));
-};
-
-export const storeUser = ({ commit, state }, payload) => {
+export const storeUser = async ({ commit, state }, payload) => {
     if (!state.idToken) {
         return;
     }
-    axios.post("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken, payload)
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+
+    try {
+        const res = axios.post("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken, payload);
+    } catch(error) {
+        console.log(error);
+    }
 };
 
 export const logout = ({ commit }) => {
