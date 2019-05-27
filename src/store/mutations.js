@@ -29,8 +29,9 @@ export const removeFromFavouritesList = (state, payload) => {
     state.favourite.splice(ind, 1);
 };
 
-export const initialiseStore = (state) => {
-    const savedState = localStorage.getItem("state");
+export const initialiseStore = (state, payload) => {
+    console.log('INITIAL STORE');
+    const savedState = localStorage.getItem(payload);
     if (savedState) {
         const initialState = JSON.parse(savedState);
         Object.assign(state, initialState);

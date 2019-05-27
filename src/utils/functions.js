@@ -4,7 +4,7 @@ export const pick = (propertyArr, obj) => {
 };
 
 export const save = (sts) => {
-	window.localStorage.setItem("state", JSON.stringify(sts));
+	window.localStorage.setItem(sts.userId, JSON.stringify(sts));
 };
 
 export const requiredFieldMessage = (field) => {

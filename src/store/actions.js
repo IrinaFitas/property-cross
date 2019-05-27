@@ -119,7 +119,7 @@ export const login = ({ commit, dispatch }, payload) => {
                 token: res.data.idToken,
                 userId: res.data.localId
             });
-            save(state);
+            commit("initialiseStore", res.data.localId);
             router.push("/");
         })
         .catch( error => console.log(error));
@@ -133,25 +133,6 @@ export const storeUser = ({ commit, state }, payload) => {
         .then(res => console.log(res))
         .catch(error => console.log(error));
 };
-// export const fetchUser = ({ commit }, payload) => {
-//     if (!state.idToken) {
-//         return;
-//     }
-//     axios.get("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken)
-//         .then(res => {
-//             console.log(res);
-//             const data = res.data;
-//             const users = [];
-//             for (let key in data) {
-//                 const user = data[key];
-//                 user.id = key;
-//                 users.push(user);
-//             }
-//             console.log(users);
-//             commit("storeUser", users[0]);
-//         })
-//         .catch(error => console.log(error));
-// };
 
 export const logout = ({ commit }) => {
     commit("logout");

@@ -11,13 +11,12 @@ import Header from "./components/Header.vue";
 import { state } from "./store/state";
 
 export const routes = [
-    { path: "", component: InitialPage,
+    { path: "", component: InitialPage, redirect: "/result",
         children: [
            { path: "result", component: SuccsessfulSearches},
            { path: "error", component: ErrorSearch}
        ],
         beforeEnter(to, from, next) {
-            console.log('asdasdasd');
             if (state.idToken) {
                 next();
             } else {
