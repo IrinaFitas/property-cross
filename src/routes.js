@@ -8,13 +8,23 @@ import Favourites from "./components/Favourites.vue";
 import RegistrationForm from "./components/RegistrationForm.vue";
 import Login from "./components/Login.vue";
 import Header from "./components/Header.vue";
+import { state } from "./store/state";
 
 export const routes = [
-    { path: "", component: Header},
-    { path: "/main", component: InitialPage, redirect: "/result", children: [
-        { path: "/result", component: SuccsessfulSearches},
-        { path: "/error", component: ErrorSearch}
-    ]},
+    { path: "", component: InitialPage,
+        children: [
+           { path: "result", component: SuccsessfulSearches},
+           { path: "error", component: ErrorSearch}
+       ],
+        beforeEnter(to, from, next) {
+            console.log('asdasdasd');
+            if (state.idToken) {
+                next();
+            } else {
+                next("/form");
+            }
+        }
+    },
     { path: "/list", component: ListOfResult},
     { path: "/locations", component: ListOfLocation},
     { path: "/current", component: CurrentProperty},

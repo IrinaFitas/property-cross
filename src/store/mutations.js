@@ -47,3 +47,8 @@ export const storeUser = (state, payload) => {
     console.log(payload);
     state.user = payload;
 };
+
+export const logout = (state) => {
+    state.idToken = null;
+    state.userId = null;
+};

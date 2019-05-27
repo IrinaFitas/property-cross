@@ -1,27 +1,41 @@
 <template>
+    <div>
     <header id="header">
         <div class="logo">
             <p>Hello!</p>
         </div>
         <nav>
             <ul>
-                <li>
+                <li v-if="!isAuthenticated">
                     <router-link to="/form">Register</router-link>
                 </li>
-                <li>
+                <li v-if="!isAuthenticated">
                     <router-link to="/login">Login</router-link>
                 </li>
-                <li>
-                    <router-link to="/main">Main</router-link>
+                <li v-if="isAuthenticated">
+                    <router-link to="/">Main</router-link>
                 </li>
-                <li>
-                    <button @click="onLogout" class="logout">Logout</button>
+                <li v-if="isAuthenticated">
+                    <button @click="logout" class="logout">Logout</button>
                 </li>
             </ul>
         </nav>
-		<router-view></router-view>
     </header>
+    </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+export default {
+    computed: {
+        ...mapGetters(["isAuthenticated"])
+    },
+    methods: {
+        ...mapActions(["logout"])
+    }
+}
+</script>
+
 
 <style scoped>
 #header {
@@ -32,6 +46,7 @@
     align-items: center;
     background-color: #802b00;
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 .logo {

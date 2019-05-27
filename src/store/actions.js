@@ -39,7 +39,7 @@ export const updateSearchList = async ( {commit}, payload) => {
         const listings = pick(["response", "listings"], res);
         const locations = pick(["response", "locations"], res);
         const code = pick(["response", "application_response_code"], res);     
-                         
+
         if (locations.length > 1) {
             commit("updateLocations", locations);
             router("/locations");
@@ -51,7 +51,7 @@ export const updateSearchList = async ( {commit}, payload) => {
         if (code === SUCCESS_CODE) {
             commit("updateErrorText", LOCATION_ERROR_MESSAGE);
             router.push("/error");
-        } 
+        }
         save(state);
     } catch(error) {
         commit("updateErrorText", ERROR_MESSAGE);
@@ -65,7 +65,7 @@ export const updateWithGeo = async ( {commit} ) => {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition( (pos) => {
             ({ coords: { latitude: position.a, longitude: position.b } } = pos);
-        }); 
+        });
     }
     try {
         const res = await axios.jsonp(`${BASE_URL}centre_point=${position.a},${position.b}`, { timeout: 5000});
@@ -102,8 +102,8 @@ export const register = ({ commit, dispatch }, payload) => {
             });
             dispatch("storeUser", payload);
             save(state);
-        })
-        .catch( error => console.log(error));
+            router.push("/");
+        }).catch( error => console.log(error));
 };
 
 export const login = ({ commit, dispatch }, payload) => {
@@ -120,6 +120,7 @@ export const login = ({ commit, dispatch }, payload) => {
                 userId: res.data.localId
             });
             save(state);
+            router.push("/");
         })
         .catch( error => console.log(error));
 };
@@ -132,22 +133,27 @@ export const storeUser = ({ commit, state }, payload) => {
         .then(res => console.log(res))
         .catch(error => console.log(error));
 };
-export const fetchUser = ({ commit }, payload) => {
-    if (!state.idToken) {
-        return;
-    }
-    axios.get("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken)
-        .then(res => {
-            console.log(res);
-            const data = res.data;
-            const users = [];
-            for (let key in data) {
-                const user = data[key];
-                user.id = key;
-                users.push(user);
-            }
-            console.log(users);
-            commit("storeUser", users[0]);
-        })
-        .catch(error => console.log(error));
+// export const fetchUser = ({ commit }, payload) => {
+//     if (!state.idToken) {
+//         return;
+//     }
+//     axios.get("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken)
+//         .then(res => {
+//             console.log(res);
+//             const data = res.data;
+//             const users = [];
+//             for (let key in data) {
+//                 const user = data[key];
+//                 user.id = key;
+//                 users.push(user);
+//             }
+//             console.log(users);
+//             commit("storeUser", users[0]);
+//         })
+//         .catch(error => console.log(error));
+// };
+
+export const logout = ({ commit }) => {
+    commit("logout");
+    router.replace("/login");
 };

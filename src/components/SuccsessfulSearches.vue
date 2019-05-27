@@ -20,7 +20,7 @@ export default {
         ...mapActions([
             "updateSearchList",
             "updateListOfResult"
-        ]) 
+        ])
     }
 }
 </script>
