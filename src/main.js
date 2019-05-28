@@ -7,6 +7,8 @@ import { routes } from "./routes.js";
 import "ant-design-vue/dist/antd.css";
 Vue.config.productionTip = false;
 
+
+
 Vue.use(Antd);
 
 Vue.use(VueRouter);
@@ -19,4 +21,8 @@ new Vue({
 	render: h => h(App),
 	store,
 	router
-}).$mount('#app')
+}).$mount('#app');
+
+
+
+

@@ -9,27 +9,33 @@ import { state } from "./state.js";
 import { router } from "./../main.js";
 import { API_KEY } from "./../utils/constants.js";
 import { BASE_AUTH_URL } from "./../utils/constants.js";
+import { checkStorage } from "./../utils/indexDB.js";
+import { saveToStorage } from "./../utils/indexDB.js";
 
 export const updateListOfResult = ( {commit}, payload) => {
     commit("updateListOfResult", payload);
     router.push("/list");
     save(state);
+    dispatch("saveIndexedDB");
 };
 
 export const updateCurrentProperty = ( {commit}, payload) => {
     commit("updateCurrentProperty", payload);
     router.push("/current");
+    dispatch("saveIndexedDB");
 };
 
 export const updateFavouritesList = ( {commit}, payload) => {
     commit("updateFavouritesList", payload);
     router.push("/favourites");
+    dispatch("saveIndexedDB");
     save(state);
 };
 
 export const removeFromFavouritesList = ( {commit}, payload) => {
     commit("removeFromFavouritesList", payload);
     router.push("/favourites");
+    dispatch("saveIndexedDB");
     save(state);
 };
 
@@ -52,8 +58,9 @@ export const updateSearchList = async ( {commit}, payload) => {
             commit("updateErrorText", LOCATION_ERROR_MESSAGE);
             router.push("/error");
         }
+        dispatch("saveIndexedDB");
         save(state);
-    } catch(error) {
+        } catch(error) {
         commit("updateErrorText", ERROR_MESSAGE);
         router.push("/error");
     }
@@ -80,6 +87,7 @@ export const updateWithGeo = async ( {commit} ) => {
             commit("updateErrorText", LOCATION_ERROR_MESSAGE);
             router.push("/error");
         }
+        dispatch("saveIndexedDB");
         save(state);
     } catch(error) {
         commit("updateErrorText", ERROR_MESSAGE);
@@ -102,8 +110,9 @@ export const register = async ({ commit, dispatch }, payload) => {
             userId: res.data.localId
         });
         dispatch("storeUser", payload);
+        dispatch("saveIndexedDB");
         save(state);
-        router.push("/");
+            router.push("/");
     } catch(error) {
         console.log(error);
     }
@@ -144,4 +153,12 @@ export const storeUser = async ({ commit, state }, payload) => {
 export const logout = ({ commit }) => {
     commit("logout");
     router.replace("/login");
+};
+
+export const saveIndexedDB = async ( state ) => {
+    try {
+        saveToStorage(state.userId, state);
+    } catch(error) {
+        console.log(error);
+    }
 };

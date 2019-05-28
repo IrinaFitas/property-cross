@@ -15,9 +15,6 @@
 </template>
 
 <script>
-import axios from "axios-jsonp-pro";
-import { API_KEY } from "./../utils/constants.js";
-import { BASE_AUTH_URL } from "./../utils/constants.js";
 import { mapActions } from 'vuex';
 
 export default {
