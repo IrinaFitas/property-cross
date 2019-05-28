@@ -12,34 +12,34 @@ import { BASE_AUTH_URL } from "./../utils/constants.js";
 import { checkStorage } from "./../utils/indexDB.js";
 import { saveToStorage } from "./../utils/indexDB.js";
 
-export const updateListOfResult = ( {commit}, payload) => {
+export const updateListOfResult = ( {commit, dispatch}, payload) => {
     commit("updateListOfResult", payload);
     router.push("/list");
     save(state);
     dispatch("saveIndexedDB");
 };
 
-export const updateCurrentProperty = ( {commit}, payload) => {
+export const updateCurrentProperty = ( {commit, dispatch}, payload) => {
     commit("updateCurrentProperty", payload);
     router.push("/current");
     dispatch("saveIndexedDB");
 };
 
-export const updateFavouritesList = ( {commit}, payload) => {
+export const updateFavouritesList = ( {commit, dispatch}, payload) => {
     commit("updateFavouritesList", payload);
     router.push("/favourites");
     dispatch("saveIndexedDB");
     save(state);
 };
 
-export const removeFromFavouritesList = ( {commit}, payload) => {
+export const removeFromFavouritesList = ( {commit, dispatch}, payload) => {
     commit("removeFromFavouritesList", payload);
     router.push("/favourites");
     dispatch("saveIndexedDB");
     save(state);
 };
 
-export const updateSearchList = async ( {commit}, payload) => {
+export const updateSearchList = async ( {commit, dispatch}, payload) => {
     try {
         const res = await axios.jsonp(`${BASE_URL}place_name=${payload}`, { timeout: 5000});
         const listings = pick(["response", "listings"], res);

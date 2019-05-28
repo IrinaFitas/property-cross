@@ -28,7 +28,7 @@ const dbPromise = _ => {
 		throw new Error("Your browser doesn't support a stable version of IndexedDB.");
 	}
 
-	return openDB('SaveStore', 1, upgradeDb => {
+	return openDB("SaveStore", 1, upgradeDb => {
 		if (!upgradeDb.objectStoreNames.contains("stateUserId")) {
 			upgradeDb.createObjectStore("stateUserId");
 		}
@@ -58,7 +58,7 @@ export const saveToStorage = async (storeName, properties) => {
 		
 		store.put(properties, storeName);
 		
-		return tx;
+		return tx.complete;
 	} catch (error) {
 		console.log(error);
 	}

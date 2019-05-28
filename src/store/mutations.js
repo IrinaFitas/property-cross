@@ -30,7 +30,6 @@ export const removeFromFavouritesList = (state, payload) => {
 };
 
 export const initialiseStore = (state, payload) => {
-    console.log('INITIAL STORE');
     const savedState = localStorage.getItem(payload);
     if (savedState) {
         const initialState = JSON.parse(savedState);
