@@ -98,16 +98,9 @@ export const register = async ({ commit, dispatch }, payload) => {
 
     try {
         const { email, password } = payload;
-        const res = await axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, {
-                email,
-                password,
-                returnSecureToken: true
-            });
-        
-        commit("authUser", {
-            token: res.data.idToken,
-            userId: res.data.localId
-        });
+        const res = await axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, { email, password, returnSecureToken: true});
+        const { idToken: token, localId: userId } = res.data;
+        commit("authUser", { token, userId });
         dispatch("storeUser", payload);
         dispatch("saveIndexedDB");
         save(state);
@@ -120,16 +113,9 @@ export const register = async ({ commit, dispatch }, payload) => {
 export const login = async ({ commit, dispatch }, payload) => {
     try {
         const { email, password } = payload;
-        const res = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, {
-            email,
-            password,
-            returnSecureToken: true
-        });
-
-        commit("authUser", {
-            token: res.data.idToken,
-            userId: res.data.localId
-        });
+        const res = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, { email, password, returnSecureToken: true });
+        const { idToken: token, localId: userId } = res.data;
+        commit("authUser", { token, userId });
         commit("initialiseStore", res.data.localId);
         router.push("/");
     } catch(error) {
@@ -143,7 +129,7 @@ export const storeUser = async ({ commit, state }, payload) => {
     }
 
     try {
-        const res = axios.post("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken, payload);
+        const res = await axios.post("https://property-cross-5b8de.firebaseio.com/users.json" + "?auth=" + state.idToken, payload);
     } catch(error) {
         console.log(error);
     }
@@ -154,9 +140,9 @@ export const logout = ({ commit }) => {
     router.replace("/login");
 };
 
-export const saveIndexedDB = async ( { state } ) => {
+export const saveIndexedDB = async ({ state }) => {
     try {
-        console.log(state.userId);
+        console.log(state);
         await saveToStorage(state.userId, state);
     } catch(error) {
         console.log(error);
