@@ -40,7 +40,7 @@ export const checkStorage = async (storeName) => {
 		const db = await dbPromise();
 		console.log('asdadasd');
 		console.log(db);
-		const tx = db.transaction(storeName, "readonly");
+		const tx = db.transaction([storeName], "readonly");
 		const store = tx.objectStore(storeName);
 		
 		return store.get(storeName);
@@ -50,9 +50,10 @@ export const checkStorage = async (storeName) => {
 };
   
 export const saveToStorage = async (storeName, properties) => {
+	console.log(storeName);
 	try {
 		const db = await dbPromise();
-		const tx = db.transaction(storeName, "readwrite");
+		const tx = db.transaction([storeName], "readwrite");
 		console.log(tx);
 		const store = tx.objectStore(storeName);
 		
@@ -60,6 +61,6 @@ export const saveToStorage = async (storeName, properties) => {
 		
 		return tx.complete;
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };

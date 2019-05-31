@@ -22,7 +22,6 @@ export const updateListOfResult = ( {commit, dispatch}, payload) => {
 export const updateCurrentProperty = ( {commit, dispatch}, payload) => {
     commit("updateCurrentProperty", payload);
     router.push("/current");
-    dispatch("saveIndexedDB");
 };
 
 export const updateFavouritesList = ( {commit, dispatch}, payload) => {
@@ -155,9 +154,10 @@ export const logout = ({ commit }) => {
     router.replace("/login");
 };
 
-export const saveIndexedDB = async ( state ) => {
+export const saveIndexedDB = async ( { state } ) => {
     try {
-        saveToStorage(state.userId, state);
+        console.log(state.userId);
+        await saveToStorage(state.userId, state);
     } catch(error) {
         console.log(error);
     }
