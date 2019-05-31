@@ -7,21 +7,15 @@
         <nav>
             <ul>
                 <template v-if="isAuthenticated">
-                    <li v-if="isAuthenticated">
-                        <router-link to="/">Main</router-link>
-                    </li>
-                    <li v-if="isAuthenticated">
+                    <li><router-link to="/">Main</router-link></li>
+                    <li>
                         <button @click="logout" class="logout">Logout</button>
                     </li>
                 </template>
 
                 <template v-else>
-                    <li v-if="!isAuthenticated">
-                        <router-link to="/form">Register</router-link>
-                    </li>
-                    <li v-if="!isAuthenticated">
-                        <router-link to="/login">Login</router-link>
-                    </li>
+                    <li><router-link to="/form">Register</router-link></li>
+                    <li><router-link to="/login">Login</router-link></li>
                 </template>
             </ul>
         </nav>
