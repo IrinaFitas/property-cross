@@ -28,11 +28,13 @@ const dbPromise = _ => {
 		throw new Error("Your browser doesn't support a stable version of IndexedDB.");
 	}
 
-	return openDB("SaveStore", 1, upgradeDb => {
-		if (!upgradeDb.objectStoreNames.contains("stateUserId")) {
-			upgradeDb.createObjectStore("stateUserId");
-		}
-  	});
+	return openDB("SaveStore", 1);
+	// , upgradeDb => {
+	// 	console.log(upgradeDb.objectStoreNames);
+	// 	if (!upgradeDb.objectStoreNames.contains("nCSAUFsal1VAR40ERkWZaj4UfUY2")) {
+	// 		upgradeDb.createObjectStore("nCSAUFsal1VAR40ERkWZaj4UfUY2");
+	// 	}
+  	// });
 }
 
 export const checkStorage = async (storeName) => {
@@ -54,7 +56,7 @@ export const saveToStorage = async (storeName, properties) => {
 	try {
 		const db = await dbPromise();
 		const tx = db.transaction([storeName], "readwrite");
-		console.log(tx);
+		console.dir(db);
 		const store = tx.objectStore(storeName);
 		
 		store.put(properties, storeName);
