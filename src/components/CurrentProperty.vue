@@ -54,27 +54,27 @@ export default {
 </script>
 
 <style scoped>
-    @import "../css/constants.css";
+@import "../css/constants.css";
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
 
-    .add-btn {
-        height: 25px;
-        align-self: center;
-        background-color: transparent;
-        padding: 0px 15px;
-        margin-left: 20px;
-        outline: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 20px;
-        color: var(--main-color);
-        box-shadow: 2px 2px 5px 0 rgba(92, 92, 138, 0.5);
-        cursor: pointer;
-    }
+.add-btn {
+    height: 25px;
+    align-self: center;
+    background-color: transparent;
+    padding: 0px 15px;
+    margin-left: 20px;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--main-color);
+    box-shadow: 2px 2px 5px 0 rgba(92, 92, 138, 0.5);
+    cursor: pointer;
+}
 </style>

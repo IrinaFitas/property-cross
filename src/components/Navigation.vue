@@ -19,27 +19,27 @@ export default {
 </script>
 
 <style scoped>
-    .nav {
-        border: none;
-        font-size: 16px;
-        color: var(--main-color);
-        position: absolute;
-        top: 0;
-        left: 15px;
-    }
-    .nav-btn {
-        border: 1px solid var(--main-color);
-        box-shadow: none;
-        color: var(--main-color);
-    }
-    .nav-btn:first-child {
-        border: 1px solid var(--main-color);
-        color: var(--main-color);
-    }
-    .nav-btn:first-child:hover {
-        color: #1890ff;
-        border-color: #1890ff;
-    }
+.nav {
+    border: none;
+    font-size: 16px;
+    color: var(--main-color);
+    position: absolute;
+    top: 0;
+    left: 15px;
+}
+.nav-btn {
+    border: 1px solid var(--main-color);
+    box-shadow: none;
+    color: var(--main-color);
+}
+.nav-btn:first-child {
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+}
+.nav-btn:first-child:hover {
+    color: #1890ff;
+    border-color: #1890ff;
+}
 </style>
 
 

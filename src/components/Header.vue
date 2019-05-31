@@ -8,9 +8,7 @@
             <ul>
                 <template v-if="isAuthenticated">
                     <li><router-link to="/">Main</router-link></li>
-                    <li>
-                        <button @click="logout" class="logout">Logout</button>
-                    </li>
+                    <li><button @click="logout" class="logout">Logout</button></li>
                 </template>
 
                 <template v-else>
@@ -35,7 +33,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 #header {
     height: 56px;
@@ -50,11 +47,11 @@ export default {
 
 .logo {
     font-weight: bold;
-	color: white;
+    color: white;
 }
 
 .logo p {
-	margin: 0;
+    margin: 0;
 }
 
 nav {

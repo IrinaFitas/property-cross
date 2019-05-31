@@ -48,51 +48,51 @@ export default {
 </script>
 
 <style scoped>
-    @import "../css/constants.css";
+@import "../css/constants.css";
 
-    #container {
-        width: 90%;
-        margin: 0 auto;
-    }
+#container {
+    width: 90%;
+    margin: 0 auto;
+}
 
-    .top-bar {
-        display: flex;
-    }
-    
-    .btn {
-        padding: 10px 15px;
-        margin: 5px;
-        border: 2px solid var(--main-color);
-        background-color: transparent;
-        font-size: var(--font-size);
-        line-height: 0.5;
-        text-transform: uppercase;
-        color: var(--main-color);
-        font-weight: bold;
-        outline: none;
-        cursor: pointer;
-    }
-    .faves-btn {
-        margin-left: auto;
-        flex-shrink: 0;
-        align-self: center;
-        width: 150px;
-        height: 40px;
-        padding: 0;
-        font-size: var(--font-size);
-        border: 2px solid var(--main-color);
-        color: var(--main-color);
-    }
+.top-bar {
+    display: flex;
+}
 
-    .search-field {
-        margin: 0 auto;
-        width: 300px;        
-    }
+.btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 2px solid var(--main-color);
+    background-color: transparent;
+    font-size: var(--font-size);
+    line-height: 0.5;
+    text-transform: uppercase;
+    color: var(--main-color);
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+}
+.faves-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: center;
+    width: 150px;
+    height: 40px;
+    padding: 0;
+    font-size: var(--font-size);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
 
-    .search-field input {
-        border: 2px solid var(--main-color);
-        font-size: var(--font-size);
-        outline: none;
-        cursor: pointer;
-    }
+.search-field {
+    margin: 0 auto;
+    width: 300px;        
+}
+
+.search-field input {
+    border: 2px solid var(--main-color);
+    font-size: var(--font-size);
+    outline: none;
+    cursor: pointer;
+}
 </style>

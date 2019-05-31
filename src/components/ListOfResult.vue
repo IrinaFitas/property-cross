@@ -33,32 +33,32 @@ export default {
 
 
 <style scoped>
-    @import "../css/constants.css";
-    .container {
-        position: relative;
-    }
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    li {
-        padding: 0;
-    }
-    .box {
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
-        border: 1px solid var(--main-color);
-        margin: 5px;
-        cursor: pointer;
-    }
-    .box:hover {
-        background-color: var(--main-color-hover);
-    }
-    .picture {
-        width: 80px;
-        height: 60px;
-        margin: 0 10px;
-    }
+@import "../css/constants.css";
+.container {
+    position: relative;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    padding: 0;
+}
+.box {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid var(--main-color);
+    margin: 5px;
+    cursor: pointer;
+}
+.box:hover {
+    background-color: var(--main-color-hover);
+}
+.picture {
+    width: 80px;
+    height: 60px;
+    margin: 0 10px;
+}
 </style>
