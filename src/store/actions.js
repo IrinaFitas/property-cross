@@ -98,8 +98,7 @@ export const register = async ({ commit, dispatch }, payload) => {
 
     try {
         const { email, password } = payload;
-        const res = await axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, { email, password, returnSecureToken: true});
-        const { idToken: token, localId: userId } = res.data;
+        const { data: {idToken: token, localId: userId}} = await axios.post(`${BASE_AUTH_URL}signupNewUser?key=${API_KEY}`, { email, password, returnSecureToken: true});
         commit("authUser", { token, userId });
         dispatch("storeUser", payload);
         dispatch("saveIndexedDB");
@@ -113,11 +112,12 @@ export const register = async ({ commit, dispatch }, payload) => {
 export const login = async ({ commit, dispatch }, payload) => {
     try {
         const { email, password } = payload;
-        const res = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, { email, password, returnSecureToken: true });
-        const { idToken: token, localId: userId } = res.data;
-        commit("authUser", { token, userId });
-        commit("initialiseStore", res.data.localId);
+        const { data: {localId, idToken: token}} = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, { email, password, returnSecureToken: true });
+        const { userId } = localId;
+        commit("authUser", { token, userId});
+        commit("initialiseStore", localId);
         router.push("/");
+        console.log(checkStorage);
     } catch(error) {
         console.log(error);
     }
