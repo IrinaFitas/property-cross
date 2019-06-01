@@ -56,12 +56,12 @@ export const saveToStorage = async (storeName, properties) => {
 	try {
 		const db = await dbPromise();
 		const tx = db.transaction([storeName], "readwrite");
-		console.dir(db);
+		console.dir(tx);
 		const store = tx.objectStore(storeName);
 		
 		store.put(properties, storeName);
 		
-		return tx.complete;
+		return tx.done;
 	} catch (error) {
 		console.error(error);
 	}

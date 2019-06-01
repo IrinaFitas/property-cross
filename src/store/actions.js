@@ -103,7 +103,7 @@ export const register = async ({ commit, dispatch }, payload) => {
         dispatch("storeUser", payload);
         dispatch("saveIndexedDB");
         save(state);
-            router.push("/");
+        router.push("/");
     } catch(error) {
         console.log(error);
     }
@@ -112,10 +112,9 @@ export const register = async ({ commit, dispatch }, payload) => {
 export const login = async ({ commit, dispatch }, payload) => {
     try {
         const { email, password } = payload;
-        const { data: {localId, idToken: token}} = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, { email, password, returnSecureToken: true });
-        const { userId } = localId;
+        const { data: {localId: userId, idToken: token}} = await axios.post(`${BASE_AUTH_URL}verifyPassword?key=${API_KEY}`, { email, password, returnSecureToken: true });
         commit("authUser", { token, userId});
-        commit("initialiseStore", localId);
+        commit("initialiseStore", userId);
         router.push("/");
         console.log(checkStorage);
     } catch(error) {
