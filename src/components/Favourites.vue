@@ -1,0 +1,54 @@
+<template>
+    <div class="container">
+        <app-navigation></app-navigation>
+        <h3>Favourites</h3>
+        <p v-if="!favourite.length">You have not added any properties to your favourites</p>
+        <ul>
+            <li v-for="(item, index) in favourite" :key="index">
+                <div class="box">
+                    <img :src="item.thumb_url" alt="">
+                    <p>{{ item.price_formatted }}</p>
+                    <p>{{ item.title }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+import Navigation from "./Navigation.vue";
+
+export default {
+    components: {
+        appNavigation: Navigation
+    },
+    computed: {
+        ...mapGetters(["favourite"])
+    }
+}
+</script>
+
+
+<style scoped>
+@import "../css/constants.css";
+.container {
+    position: relative;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.box {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--main-color);
+    margin: 5px;
+}
+.picture {
+    width: 80px;
+    height: 60px;
+    margin: 0 10px;
+}
+</style>
